@@ -21,3 +21,10 @@
     ```
     npm install express
     ```
+
+- server.js
+    ```
+    node server.js
+    ```
+
+    http://localhost:4000/hello
