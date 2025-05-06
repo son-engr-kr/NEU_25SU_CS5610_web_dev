@@ -8,3 +8,16 @@
     npm init
     ```
     it will make package.json
+
+
+- hello.js
+    Execute it in cmd bash(not powershell)
+    ```
+    node hello.js
+    ```
+
+- expressjs
+    Execute it in the project folder.
+    ```
+    npm install express
+    ```
