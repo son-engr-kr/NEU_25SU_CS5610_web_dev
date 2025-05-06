@@ -1,3 +1,8 @@
+# Lecture:
+
+## Installing Node
+https://docs.google.com/presentation/d/16yDwIH8np-tQL85g4bpmrsDfO8LaW38jr-fMQirLnoQ/edit#slide=id.g10f06da46b0_0_11
+
 - download node
     - https://nodejs.org/en/
     - reboot after install
