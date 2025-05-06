@@ -7,7 +7,7 @@ https://docs.google.com/presentation/d/16yDwIH8np-tQL85g4bpmrsDfO8LaW38jr-fMQirL
     - https://nodejs.org/en/
     - reboot after install
     - node --version
-
+- cd project folder
 - npm init (with authorized shell)
     ```
     npm init
@@ -33,3 +33,21 @@ https://docs.google.com/presentation/d/16yDwIH8np-tQL85g4bpmrsDfO8LaW38jr-fMQirL
     ```
 
     http://localhost:4000/hello
+
+## Creating react app
+in the root folder...
+```
+npm create vite@latest
+```
+-> it will install the package for first time
+
+- name project: kambaz-react-web-app
+- Select React
+- Select TypeScript
+
+- running a react app
+    ```
+    cd kanbas-react-web-app
+    npm install
+    npm run dev
+    ```
