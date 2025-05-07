@@ -47,7 +47,7 @@ npm create vite@latest
 
 - running a react app
     ```
-    cd kanbas-react-web-app
+    cd kambaz-react-web-app
     npm install
     npm run dev
     ```
