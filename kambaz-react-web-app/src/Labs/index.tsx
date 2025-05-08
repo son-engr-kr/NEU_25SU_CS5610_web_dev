@@ -8,6 +8,7 @@ export default function Labs() {
     <div>
       <h1>Labs</h1>
       <TOC />
+      { /* Routes change the contents based on the URL */ }
       <Routes>
         <Route path="/" element={<Navigate to="Lab1" />} />
         <Route path="Lab1" element={<Lab1 />} />
