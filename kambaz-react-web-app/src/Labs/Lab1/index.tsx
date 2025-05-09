@@ -42,7 +42,7 @@ export default function Lab1() {
                 </ol>
                 My favorite recipe:
                 <ol id="wd-your-favorite-recipe">
-                    {/* complete on your own */}
+                    {/* TODO: complete on your own */}
                 </ol>
                 <h5>Unordered List Tag</h5>
                 My favorite books (in no particular order)
@@ -55,7 +55,7 @@ export default function Lab1() {
                 </ul>
                 Your favorite books (in no particular order)
                 <ul id="wd-your-books">
-                    {/* complete on your own */}
+                    {/* TODO: complete on your own */}
                 </ul>
 
 
