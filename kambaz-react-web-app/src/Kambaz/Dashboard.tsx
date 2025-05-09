@@ -8,7 +8,7 @@ export default function Dashboard() {
         <div className="wd-dashboard-course">
           <Link to="/Kambaz/Courses/1234/Home"
                 className="wd-dashboard-course-link" >
-            {/* TODO: change image*/}
+            {/* TODO(A1): change image*/}
             <img src="/images/reactjs.jpg" width={200} />
             <div>
               <h5> CS1234 React JS </h5>
@@ -22,7 +22,7 @@ export default function Dashboard() {
         <div className="wd-dashboard-course"> ... </div>
 
         {/*
-            TODO: add at least 7 courses in total
+            TODO(A1): add at least 7 courses in total
         */}
       </div>
     </div>

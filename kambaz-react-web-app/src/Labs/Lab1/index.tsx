@@ -42,7 +42,7 @@ export default function Lab1() {
                 </ol>
                 My favorite recipe:
                 <ol id="wd-your-favorite-recipe">
-                    {/* TODO: complete on your own */}
+                    {/* TODO(A1): complete on your own */}
                 </ol>
                 <h5>Unordered List Tag</h5>
                 My favorite books (in no particular order)
@@ -55,7 +55,7 @@ export default function Lab1() {
                 </ul>
                 Your favorite books (in no particular order)
                 <ul id="wd-your-books">
-                    {/* TODO: complete on your own */}
+                    {/* TODO(A1): complete on your own */}
                 </ul>
 
 
@@ -106,7 +106,7 @@ export default function Lab1() {
                     <br />
                     Loading a local image:
                     <br />
-                    {/* TODO: change image*/}
+                    {/* TODO(A1): change image*/}
                     <img id="wd-teslabot" src="images/teslabot.jpg" height="200px" />
                 </div>
 
@@ -128,7 +128,7 @@ export default function Lab1() {
                         value="Wonderland"
                         title="The last name"
                         id="wd-text-fields-last-name" />
-                    {/* TODO: copy rest of form elements here  */}
+                    {/* TODO(A1): copy rest of form elements here  */}
                 </form>
             </div>
 
