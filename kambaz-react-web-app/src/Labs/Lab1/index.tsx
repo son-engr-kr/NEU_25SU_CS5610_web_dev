@@ -106,6 +106,7 @@ export default function Lab1() {
                     <br />
                     Loading a local image:
                     <br />
+                    {/* TODO: change image*/}
                     <img id="wd-teslabot" src="images/teslabot.jpg" height="200px" />
                 </div>
 
@@ -127,7 +128,7 @@ export default function Lab1() {
                         value="Wonderland"
                         title="The last name"
                         id="wd-text-fields-last-name" />
-                    {/* copy rest of form elements here  */}
+                    {/* TODO: copy rest of form elements here  */}
                 </form>
             </div>
 
