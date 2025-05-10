@@ -7,6 +7,11 @@ export default function Labs() {
   return (
     <div>
       <h1>Labs</h1>
+      <div>
+        <p>Name: Hyoungseo Son (son.hyo@northeastern.edu)</p>
+        <p>Section: CS5610 SU25 41980</p>
+        <p>GitHub: <a href="https://github.com/son-engr-kr/NEU_25SU_CS5610_web_dev/tree/main/kambaz-react-web-app" target="_blank">NEU_25SU_CS5610_web_dev/kambaz-react-web-app</a></p>
+      </div>
       <TOC />
       { /* Routes change the contents based on the URL */ }
       <Routes>
