@@ -1,6 +1,6 @@
-| 번호 | 기준 | 완료 여부 |
+| No. | Criteria | Completion Status |
 |------|------|----------|
-| 1 | Deployed to Netlify | [ ] |
+| 1 | Deployed to Netlify | [O] |
 | 2 | Can easily identify whose assignment this is | [ ] |
 | 3 | Link to GitHub | [ ] |
 | 4 | Can navigate to Labs easily | [ ] |
