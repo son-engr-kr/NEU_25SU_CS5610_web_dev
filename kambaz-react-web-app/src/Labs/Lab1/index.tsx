@@ -73,7 +73,7 @@ export default function Lab1() {
                 </ul>
 
 
-                {/* 13 page */}
+                {/* DONE(A1): 1.3.5 13 page */}
 
                 <div id="wd-tables">
                     <h4>Table Tag</h4>
@@ -99,7 +99,12 @@ export default function Lab1() {
                                 <td>2/10/21</td>
                                 <td>90</td>
                             </tr>
-                            <tr> ... </tr>
+                            <tr>
+                                <td>Q3</td>
+                                <td>JavaScript</td>
+                                <td>2/17/21</td>
+                                <td>95</td>
+                            </tr>
                         </tbody>
                         <tfoot>
                             <tr>
