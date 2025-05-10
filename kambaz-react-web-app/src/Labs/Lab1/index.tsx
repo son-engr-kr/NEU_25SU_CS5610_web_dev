@@ -40,9 +40,16 @@ export default function Lab1() {
                     <li>Flip and cook the other side.</li>
                     <li>Serve and enjoy!</li>
                 </ol>
-                My favorite recipe:
+                My favorite recipe(Cold noodle):
                 <ol id="wd-your-favorite-recipe">
-                    {/* TODO(A1): complete on your own */}
+                    {/* DONE(A1): complete on your own */}
+                    <li>Boil water</li>
+                    <li>Put noodles in boiling water</li>
+                    <li>Drain and rinse the noodle with cold water</li>
+                    <li>Pour broth and sauce in the bowl</li>
+                    <li>Put the noodle in the bowl</li>
+                    <li>Mix and serve</li>
+                    <li>Enjoy!</li>
                 </ol>
                 <h5>Unordered List Tag</h5>
                 My favorite books (in no particular order)
@@ -55,7 +62,14 @@ export default function Lab1() {
                 </ul>
                 Your favorite books (in no particular order)
                 <ul id="wd-your-books">
-                    {/* TODO(A1): complete on your own */}
+                    {/* DONE(A1): complete on your own */}
+                    <li>Deep Learning from scratch</li>
+                    <li>Kotlin in action</li>
+                    <li>Effective Kotlin</li>
+                    <li>Clean Code</li>
+                    <li>Unity URP</li>
+                    <li>Engineering Mathematics</li>
+                    <li>Learning Python</li>
                 </ul>
 
 
@@ -106,7 +120,7 @@ export default function Lab1() {
                     <br />
                     Loading a local image:
                     <br />
-                    {/* TODO(A1): change image*/}
+                    {/* DONE(A1): change image*/}
                     <img id="wd-teslabot" src="images/teslabot.jpg" height="200px" />
                 </div>
 

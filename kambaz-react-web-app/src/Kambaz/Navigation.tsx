@@ -5,7 +5,7 @@ export default function KambazNavigation() {
       <a href="https://www.northeastern.edu/" id="wd-neu-link" target="_blank">Northeastern</a><br/>
       <Link to="/Kambaz/Account" id="wd-account-link">Account</Link><br/>
       <Link to="/Kambaz/Dashboard" id="wd-dashboard-link">Dashboard</Link><br/>
-      {/* TODO(A1): This is not typo maybe. Course should take us to Dashboard */}
+      {/* DONE(A1): This is not typo maybe. Course should take us to Dashboard */}
       <Link to="/Kambaz/Dashboard" id="wd-course-link">Courses</Link><br/>
       <Link to="/Kambaz/Calendar" id="wd-calendar-link">Calendar</Link><br/>
       <Link to="/Kambaz/Inbox" id="wd-inbox-link">Inbox</Link><br/>
