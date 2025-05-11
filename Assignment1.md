@@ -10,7 +10,7 @@
 | 8 | Lab - Lists - My favorite recipe | [O] |
 | 9 | Lab - Lists - Unordered List Elements | [O] |
 | 10 | Lab - Lists - Your favorite books | [O] |
-| 11 | Lab - Table Tags Q3, Q4, through Q10 | [ ] |
+| 11 | Lab - Table Tags Q3, Q4, through Q10 | [O] |
 | 12 | Lab - Images - Starship image | [O] |
 | 13 | Lab - Images - Teslabot image | [O] |
 | 14 | Lab - Forms - Username | [O] |
