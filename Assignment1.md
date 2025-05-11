@@ -77,9 +77,9 @@
 | 75 | Kambaz - Courses - Navigation - Quizzes link | [O] |
 | 76 | Kambaz - Courses - Navigation - Assignments link | [O] |
 | 77 | Kambaz - Courses - Navigation - Grades link | [O] |
-| 78 | Kambaz - Modules - Show Modules (2+) | [ ] |
-| 79 | Kambaz - Modules - Module title (2+) | [ ] |
-| 80 | Kambaz - Modules - Show Lessons (2+) | [ ] |
+| 78 | Kambaz - Modules - Show Modules (2+) | [O] |
+| 79 | Kambaz - Modules - Module title (2+) | [O] |
+| 80 | Kambaz - Modules - Show Lessons (2+) | [O] |
 | 81 | Kambaz - Courses - Home - Screen | [ ] |
 | 82 | Kambaz - Courses - Home - Course Status component | [O] |
 | 83 | Kambaz - Courses - Home - Buttons at the top | [ ] |
