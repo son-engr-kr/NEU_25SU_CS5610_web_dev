@@ -197,11 +197,29 @@ export default function Lab1() {
             <label>Biography:</label><br />
             <textarea id="wd-textarea" cols={30} rows={10}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
 
+
+            {/* 1.3.7.3 */}
+            <div>
+                <h5 id="wd-buttons">Buttons</h5>
+                <button type="button"
+                    onClick={() => alert("Life is Good!")}
+                    id="wd-all-good">
+                    Hello World!
+                </button>
+            </div>
+
+            {/* File upload */}
+            <h5>Upload File</h5>
+            <label htmlFor="wd-upload">Choose a file:</label>
+            <input type="file" id="wd-upload" />
+
             <h5 id="wd-radio-buttons">Radio buttons</h5>
 
-            <label>Favorite movie genre:</label><br />
+
+
 
             {/* 1.3.7.4 */}
+            <label>Favorite movie genre:</label><br />
 
             <input type="radio" name="radio-genre" id="wd-radio-comedy" />
             <label htmlFor="wd-radio-comedy">Comedy</label><br />
@@ -285,7 +303,7 @@ export default function Lab1() {
             <h4>Anchor tag</h4>
             Please
             <a href="https://www.lipsum.com" id="wd-lipsum">click here</a>
-            to get dummy text<br/>
+            to get dummy text<br />
         </div>
     );
 }

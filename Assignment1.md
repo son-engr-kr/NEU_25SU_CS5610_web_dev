@@ -18,8 +18,8 @@
 | 16 | Lab - Forms - First Name | [O] |
 | 17 | Lab - Forms - Last name | [O] |
 | 18 | Lab - Forms - Textareas | [O] |
-| 19 | Lab - Forms - Clicking button pops up alert | [ ] |
-| 20 | Lab - Forms - File upload button | [ ] |
+| 19 | Lab - Forms - Clicking button pops up alert | [O] |
+| 20 | Lab - Forms - File upload button | [O] |
 | 21 | Lab - Forms - Comedy radio | [O] |
 | 22 | Lab - Forms - Drama radio | [O] |
 | 23 | Lab - Forms - SciFi radio | [O] |
