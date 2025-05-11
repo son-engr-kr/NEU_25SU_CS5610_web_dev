@@ -51,7 +51,7 @@
 | 49 | Kambaz - Account - Signup - Username field of type text | [O] |
 | 50 | Kambaz - Account - Signup - Password field of type password | [O] |
 | 51 | Kambaz - Account - Signup - Verify Password field of type password | [O] |
-| 52 | Kambaz - Account - Signup - Some default values | [ ] |
+| 52 | Kambaz - Account - Signup - Some default values | [O] |
 | 53 | Kambaz - Account - Signup - Clicking Signin Link or Button | [O] |
 | 54 | Kambaz - Account - Signup - Clicking Signup Link or Button | [O] |
 | 55 | Kambaz - Account - Navigation - Account Navigation Links sidebar | [O] |
