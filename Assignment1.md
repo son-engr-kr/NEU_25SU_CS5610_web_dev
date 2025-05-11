@@ -61,7 +61,7 @@
 | 59 | Kambaz - Dashboard - Published Courses subtitle | [O] |
 | 60 | Kambaz - Dashboard - List of courses | [O] |
 | 61 | Kambaz - Dashboard - The course (3+) | [O] |
-| 62 | Kambaz - Dashboard - The link to the course (3+) | [?-각각 따로 만들어야하나] |
+| 62 | Kambaz - Dashboard - The link to the course (3+) | [O] |
 | 63 | Kambaz - Dashboard - Course Title (3+) | [O] |
 | 64 | Kambaz - Navigation Sidebar - Link to NEU | [O] |
 | 65 | Kambaz - Navigation Sidebar - Link to Account | [O] |
