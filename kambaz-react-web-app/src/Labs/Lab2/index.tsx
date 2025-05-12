@@ -13,7 +13,7 @@ import GridLayout from "./GridLayout";
 import Flex from "./Flex";
 import { Container } from "react-bootstrap";
 import BootstrapGrids from "./BootstrapGrids";
-
+import ScreenSizeLabel from "./ScreenSizeLabel";
 export default function Lab2() {
   return (
     <Container>
@@ -110,8 +110,11 @@ export default function Lab2() {
       {/* 2.1.19 */}
       <Flex />
 
-      {/* 2.3.3 */}
+      {/* 2.3.3, 2.3.4 */}
       <BootstrapGrids />
+
+      {/* 2.3.5 */}
+      <ScreenSizeLabel />
 
     </Container>
 
