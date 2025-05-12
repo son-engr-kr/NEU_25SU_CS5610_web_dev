@@ -1,3 +1,10 @@
+# Instruction
+## 2.2 Decorating Documents with React Icons
+```bash
+npm install react-icons
+```
+# Checklist
+
 | No. | Criteria | Completion Status |
 |-----|----------|------------------|
 | 1 | Labs - CSS - ID Selectors - White on red paragraph | [ ] |
