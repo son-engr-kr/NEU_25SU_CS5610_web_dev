@@ -1,5 +1,5 @@
-| No. | Criteria | Completion Status |
-|------|------|----------|
+| No. | Criteria | Completion Status | |
+|------|------|----------|--------|
 | 1 | Deployed to Netlify | [O] |
 | 2 | Can easily identify whose assignment this is | [O] |
 | 3 | Link to GitHub | [O] |
@@ -38,7 +38,7 @@
 | 36 | Implementing Navigation in Single Page Applications | [O] |
 | 37 | Kambaz - Account - Signin - Username field of type text | [O] |
 | 38 | Kambaz - Account - Signin - Password field of type password | [O] |
-| 39 | Kambaz - Account - Signin - Some default values | [ ] |
+| 39 | Kambaz - Account - Signin - Some default values | [O] |
 | 40 | Kambaz - Account - Signin - Clicking Signin Link or Button | [O] |
 | 41 | Kambaz - Account - Signin - Clicking Signup Link or Button | [O] |
 | 42 | Kambaz - Account - Profile - Username, first, and last name fields | [O] |
