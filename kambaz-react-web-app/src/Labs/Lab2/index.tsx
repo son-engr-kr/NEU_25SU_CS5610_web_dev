@@ -1,4 +1,9 @@
 import "./index.css";
+import ForegroundColors from "./ForegroundColors";
+import BackgroundColors from "./BackgroundColors";
+import Borders from "./Borders";
+import Padding from "./Padding";
+import Margin from "./Margin";
 export default function Lab2() {
   return (
     <div id="wd-lab2">
@@ -70,87 +75,16 @@ export default function Lab2() {
         </div>
       </div>
       {/* 2.1.7 */}
-      <div id="wd-css-colors">
-        <h2>Colors</h2>
-        <h3 className="wd-fg-color-blue">Foreground color</h3>
-        <p className="wd-fg-color-red">
-          The text in this paragraph is red but
-          <span className="wd-fg-color-green">this text is green</span>
-        </p>
-      </div>
-
-
-      <div id="wd-css-background-colors">
-        <h3 className="wd-bg-color-blue wd-fg-color-white">Background color</h3>
-        <p className="wd-bg-color-red wd-fg-color-black">
-          This background of this paragraph is red but
-          <span className="wd-bg-color-green wd-fg-color-white">
-            the background of this text is green and the foreground white
-          </span>
-        </p>
-      </div>
-
+      <ForegroundColors />
+      {/* 2.1.8 */}
+      <BackgroundColors />
       {/* 2.1.9 */}
-      <div id="wd-css-borders">
-        <h2>Borders</h2>
-        <p className="wd-border-fat
-     wd-border-red
-     wd-border-solid">
-          Solid fat red border</p>
-        <p className="wd-border-thin
-     wd-border-blue
-     wd-border-dashed">
-          Dashed thin blue border
-        </p>
-      </div>
+      <Borders />
 
       {/* 2.1.10 */}
-      <div id="wd-css-paddings">
-        <h2>Padding</h2>
-        <div className="wd-padded-top-left wd-border-fat 
-      wd-border-red wd-border-solid 
-      wd-bg-color-yellow">
-          Padded top left
-        </div>
-        <div className="wd-padded-bottom-right wd-border-fat 
-      wd-border-blue wd-border-solid 
-      wd-bg-color-yellow">
-          Padded bottom right
-        </div>
-        <div className="wd-padding-fat wd-border-fat 
-      wd-border-yellow wd-border-solid 
-      wd-bg-color-blue wd-fg-color-white">
-          Padded all around  </div>
-      </div>
-
-      <div id="wd-css-margins">
-        <h2>Margins</h2>
-        <div
-          className="wd-margin-bottom 
-      wd-padded-top-left 
-      wd-border-fat wd-border-red 
-      wd-border-solid 
-      wd-bg-color-yellow">
-          Margin bottom
-        </div>
-        <div
-          className="wd-margin-right-left 
-      wd-padded-bottom-right 
-      wd-border-fat wd-border-blue 
-      wd-border-solid 
-      wd-bg-color-yellow">
-          Margin left right
-        </div>
-        <div
-          className="wd-margin-all-around 
-      wd-padding-fat wd-border-fat 
-      wd-border-yellow 
-      wd-border-solid 
-      wd-bg-color-blue 
-      wd-fg-color-white">
-          Margin all around
-        </div>
-      </div>
+      <Padding />
+      {/* 2.1.10 */}
+      <Margin />
 
 
 
