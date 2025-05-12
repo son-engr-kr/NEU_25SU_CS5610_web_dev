@@ -12,6 +12,8 @@ import Float from "./Float";
 import GridLayout from "./GridLayout";
 import Flex from "./Flex";
 import { Container } from "react-bootstrap";
+import BootstrapGrids from "./BootstrapGrids";
+
 export default function Lab2() {
   return (
     <Container>
@@ -107,6 +109,9 @@ export default function Lab2() {
       <GridLayout />
       {/* 2.1.19 */}
       <Flex />
+
+      {/* 2.3.3 */}
+      <BootstrapGrids />
 
     </Container>
 
