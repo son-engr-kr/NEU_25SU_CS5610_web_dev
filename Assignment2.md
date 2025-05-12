@@ -3,6 +3,12 @@
 ```bash
 npm install react-icons
 ```
+## 2.3 Styling Webpages with the React Bootstrap CSS Library
+### 2.3.1 Installing React Bootstrap
+```bash
+npm  install  react-bootstrap  bootstrap
+```
+
 # Checklist
 
 | No. | Criteria | Completion Status |
