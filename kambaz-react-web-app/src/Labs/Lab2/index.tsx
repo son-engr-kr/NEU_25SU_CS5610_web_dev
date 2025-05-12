@@ -4,6 +4,7 @@ import BackgroundColors from "./BackgroundColors";
 import Borders from "./Borders";
 import Padding from "./Padding";
 import Margin from "./Margin";
+import Corders from "./Corders";
 export default function Lab2() {
   return (
     <div id="wd-lab2">
@@ -85,7 +86,8 @@ export default function Lab2() {
       <Padding />
       {/* 2.1.10 */}
       <Margin />
-
+      {/* 2.1.11 */}
+      <Corders />
 
 
     </div>
