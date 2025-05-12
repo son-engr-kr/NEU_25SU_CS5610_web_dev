@@ -7,6 +7,7 @@ import Margin from "./Margin";
 import Corders from "./Corders";
 import Dimensions from "./Dimensions";
 import Positions from "./Positions";
+import Zindex from "./Zindex";
 export default function Lab2() {
   return (
     <div id="wd-lab2">
@@ -94,6 +95,9 @@ export default function Lab2() {
       <Dimensions />
       {/* 2.1.13 */}
       <Positions />
+      {/* 2.1.16 */}
+      <Zindex />
+
 
     </div>
 
