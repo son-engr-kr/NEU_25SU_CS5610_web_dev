@@ -1,7 +1,7 @@
 export default function Base() {
     return (
         <div>
-            {/* Chapter: */}
+            {/* X.X.X */}
             
 
         </div>
