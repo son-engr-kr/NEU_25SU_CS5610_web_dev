@@ -10,6 +10,7 @@ import Positions from "./Positions";
 import Zindex from "./Zindex";
 import Float from "./Float";
 import GridLayout from "./GridLayout";
+import Flex from "./Flex";
 export default function Lab2() {
   return (
     <div id="wd-lab2">
@@ -103,7 +104,8 @@ export default function Lab2() {
       <Float />
       {/* 2.1.18 */}
       <GridLayout />
-
+      {/* 2.1.19 */}
+      <Flex />
 
     </div>
 
