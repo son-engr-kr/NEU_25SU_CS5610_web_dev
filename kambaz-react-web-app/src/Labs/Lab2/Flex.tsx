@@ -1,3 +1,5 @@
+import ReactIconsSampler from "./ReactIcons";
+
 export default function Base() {
     return (
         <div>
@@ -37,6 +39,8 @@ export default function Base() {
                 </div>
             </div>
 
+            {/* 2.2 Decorating Documents with React Icons */}
+            <ReactIconsSampler />
 
         </div>
     )
