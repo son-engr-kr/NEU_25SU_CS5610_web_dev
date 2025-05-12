@@ -118,7 +118,7 @@ export default function AssignmentEditor() {
           </td>
           <td align="left" valign="top">
             {/* Date Picker for Due Date in MM/DD/YYYY format */}
-            <input type="date" id="wd-due-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="MM/DD/YYYY" />
+            <input type="date" id="wd-due-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="MM/DD/YYYY" defaultValue="2025-05-13" />
           </td>
         </tr>
 
@@ -139,12 +139,12 @@ export default function AssignmentEditor() {
           </td>
           <td align="left" valign="top">
             {/* Date Picker for Due Date in MM/DD/YYYY format */}
-            <input type="date" id="wd-due-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="MM/DD/YYYY" />
+            <input type="date" id="wd-available-from" pattern="\d{2}/\d{2}/\d{4}" placeholder="MM/DD/YYYY" defaultValue="2025-05-13"/>
           </td>
 
           <td align="left" valign="top">
             {/* Date Picker for Due Date in MM/DD/YYYY format */}
-            <input type="date" id="wd-due-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="MM/DD/YYYY" />
+            <input type="date" id="wd-until" pattern="\d{2}/\d{2}/\d{4}" placeholder="MM/DD/YYYY" defaultValue="2025-05-13"/>
           </td>
         </tr>
 

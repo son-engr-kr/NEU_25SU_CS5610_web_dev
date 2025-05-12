@@ -80,18 +80,18 @@
 | 78 | Kambaz - Modules - Show Modules (2+) | [O] |
 | 79 | Kambaz - Modules - Module title (2+) | [O] |
 | 80 | Kambaz - Modules - Show Lessons (2+) | [O] |
-| 81 | Kambaz - Courses - Home - Screen | [ ] |
+| 81 | Kambaz - Courses - Home - Screen | [O] |
 | 82 | Kambaz - Courses - Home - Course Status component | [O] |
-| 83 | Kambaz - Courses - Home - Buttons at the top | [ ] |
-| 84 | Kambaz - Courses - Home - At least two modules | [ ] |
-| 85 | Kambaz - Courses - Home - Looks somewhat similar to wireframe | [ ] |
-| 86 | Kambaz - Assignments - Can navigate here by clicking Assignments link | [ ] |
-| 87 | Kambaz - Assignments - Can navigate to other screens | [ ] |
-| 88 | Kambaz - Assignments - Input field at the top with placeholder | [ ] |
-| 89 | Kambaz - Assignments - Buttons as shown | [] |
-| 90 | Kambaz - Assignments - Dropdown as shown | [ ] |
-| 91 | Kambaz - Assignments - Headings/sections Assignments, Quizzes, Exams, Project | [ ] |
-| 92 | Kambaz - Assignments - Assignment links as shown | [ ] |
+| 83 | Kambaz - Courses - Home - Buttons at the top | [O] |
+| 84 | Kambaz - Courses - Home - At least two modules | [O] |
+| 85 | Kambaz - Courses - Home - Looks somewhat similar to wireframe | [O] |
+| 86 | Kambaz - Assignments - Can navigate here by clicking Assignments link | [O] |
+| 87 | Kambaz - Assignments - Can navigate to other screens | [O] |
+| 88 | Kambaz - Assignments - Input field at the top with placeholder | [O] | placeholder: Search for Assignments
+| 89 | Kambaz - Assignments - Buttons as shown | [O] |
+| 90 | Kambaz - Assignments - Dropdown as shown | [X] |
+| 91 | Kambaz - Assignments - Headings/sections Assignments, Quizzes, Exams, Project | [O] |
+| 92 | Kambaz - Assignments - Assignment links as shown | [O] |
 | 93 | Kambaz - Assignment Editor - Assignment Name input field | [o] |
 | 94 | Kambaz - Assignment Editor - Assignment Description text area | [o] |
 | 95 | Kambaz - Assignment Editor - Points field is type number | [o] |
@@ -101,8 +101,8 @@
 | 99 | Kambaz - Assignment Editor - Online Entry Options checkboxes | [o] |
 | 100 | Kambaz - Assignment Editor - Assign to input field | [o] |
 | 101 | Kambaz - Assignment Editor - Due date input field of type date | [o] |
-| 102 | Kambaz - Assignment Editor - Due date input field has some default date | [ ] |
+| 102 | Kambaz - Assignment Editor - Due date input field has some default date | [O] |
 | 103 | Kambaz - Assignment Editor - Available from date input field of type date | [o] |
-| 104 | Kambaz - Assignment Editor - Available from input field has some default date | [ ] |
+| 104 | Kambaz - Assignment Editor - Available from input field has some default date | [O] |
 | 105 | Kambaz - Assignment Editor - Until date input field of type date | [o] |
-| 106 | Kambaz - Assignment Editor - Until input field has some default date | [ ] |
+| 106 | Kambaz - Assignment Editor - Until input field has some default date | [O] |
