@@ -11,12 +11,13 @@ import Zindex from "./Zindex";
 import Float from "./Float";
 import GridLayout from "./GridLayout";
 import Flex from "./Flex";
+import { Container } from "react-bootstrap";
 export default function Lab2() {
   return (
-    <div id="wd-lab2">
+    <Container>
       <h2>Lab 2 - Cascading Style Sheets</h2>
       <h3>Styling with the STYLE attribute</h3>
-      …
+      Style attribute allows configuring look and feel right on the element.
       <div id="wd-css-id-selectors">
         <h3>ID selectors</h3>
         <p id="wd-id-selector-1">
@@ -107,7 +108,7 @@ export default function Lab2() {
       {/* 2.1.19 */}
       <Flex />
 
-    </div>
+    </Container>
 
 
   );
