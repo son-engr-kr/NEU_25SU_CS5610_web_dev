@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap";
 import { FormGroup, FormLabel, FormSelect } from "react-bootstrap";
 
 import { FormControl } from "react-bootstrap";
+import FormRange from "react-bootstrap/esm/FormRange";
 
 export default function Base() {
     return (
@@ -45,6 +46,16 @@ export default function Base() {
                     id="custom-switch"
                     label="Checked disabled switch checkbox input" />
             </div>
+
+            {/* 2.3.13 */}
+            <div id="wd-css-styling-range-and-sliders">
+                <h3>Range</h3>
+                <FormGroup controlId="wd-range1">
+                    <FormLabel>Example range</FormLabel>
+                    <FormRange min="0" max="5" step="0.5" />
+                </FormGroup>
+            </div>
+
 
 
         </div>

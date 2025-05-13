@@ -125,7 +125,7 @@ export default function Lab2() {
       {/* 2.3.8, 2.3.9 */}
       <BootstrapLists />
 
-      {/* 2.3.10, 2.3.11 */}
+      {/* 2.3.10, 2.3.11, 2.3.12, 2.3.13*/}
       <BootstrapForms />
       
 
