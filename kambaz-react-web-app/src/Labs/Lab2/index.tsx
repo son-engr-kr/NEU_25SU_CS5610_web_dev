@@ -16,6 +16,7 @@ import BootstrapGrids from "./BootstrapGrids";
 import ScreenSizeLabel from "./ScreenSizeLabel";
 import BootstrapTables from "./BootstrapTables";
 import BootstrapLists from "./BootstrapLists";
+import BootstrapForms from "./BootstrapForms";
 export default function Lab2() {
   return (
     <Container>
@@ -121,8 +122,11 @@ export default function Lab2() {
       {/* 2.3.6 */}
       <BootstrapTables />
 
-      {/* 2.3.8 */}
+      {/* 2.3.8, 2.3.9 */}
       <BootstrapLists />
+
+      {/* 2.3.10 */}
+      <BootstrapForms />
 
     </Container>
 
