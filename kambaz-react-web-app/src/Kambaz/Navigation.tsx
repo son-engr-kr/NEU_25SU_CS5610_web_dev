@@ -1,30 +1,73 @@
-import { AiOutlineDashboard } from "react-icons/ai";
+import { AiOutlineDashboard, AiOutlineCalendar, AiOutlineInbox } from "react-icons/ai";
 import { LiaBookSolid } from "react-icons/lia";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { FaFlask } from "react-icons/fa";
 import { ListGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 export default function KambazNavigation() {
+  const location = useLocation();
+  {/* DONE(A2): 2.4.1, Style the navigation bar */}
   return (
-    <ListGroup id="wd-kambaz-navigation" style={{ width: 120 }}
-      className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2">
-      <ListGroup.Item id="wd-neu-link" target="_blank" action
+    <ListGroup id="wd-kambaz-navigation" 
+      className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
+      style={{ width: "110px" }}>
+      
+      <ListGroup.Item 
+        action
         href="https://www.northeastern.edu/"
-        className="bg-black border-0 text-center">
-        <img src="/images/NEU.png" width="75px" /></ListGroup.Item><br />
-      <ListGroup.Item to="/Kambaz/Account" as={Link}
-        className="text-center border-0 bg-black text-white">
-        <FaRegCircleUser className="fs-1 text text-white" /><br />
-        Account </ListGroup.Item>
-      <ListGroup.Item to="/Kambaz/Dashboard" as={Link}
-        className="text-center border-0
-                  bg-white text-danger">
-        <AiOutlineDashboard className="fs-1 text-danger" /><br />
-        Dashboard </ListGroup.Item>
-      <ListGroup.Item to="/Kambaz/Dashboard" as={Link}
-        className="text-white
-                  bg-black text-center border-0">
-        <LiaBookSolid className="fs-1 text-danger" /><br />
-        Courses </ListGroup.Item>
-      {/* complete styling the rest of the links */}
-    </ListGroup>);
+        target="_blank"
+        className="bg-black border-0 text-center p-2">
+        <img src="/images/NEU.png" width="75px" alt="NEU" />
+      </ListGroup.Item>
+
+      <ListGroup.Item 
+        to="/Kambaz/Account" 
+        as={Link}
+        className={`text-center border-0 p-2 ${location.pathname === "/Kambaz/Account" ? "bg-white text-danger" : "bg-black text-white"}`}>
+        <FaRegCircleUser className="fs-1" style={{ color: location.pathname === "/Kambaz/Account" ? "#dc3545" : "white" }} />
+        <div className="mt-1">Account</div>
+      </ListGroup.Item>
+
+      <ListGroup.Item 
+        to="/Kambaz/Dashboard" 
+        as={Link}
+        className={`text-center border-0 p-2 ${location.pathname === "/Kambaz/Dashboard" ? "bg-white text-danger" : "bg-black text-white"}`}>
+        <AiOutlineDashboard className="fs-1" style={{ color: "#dc3545" }} />
+        <div className="mt-1">Dashboard</div>
+      </ListGroup.Item>
+
+      <ListGroup.Item 
+        to="/Kambaz/Courses" 
+        as={Link}
+        className={`text-center border-0 p-2 ${location.pathname === "/Kambaz/Courses" ? "bg-white text-danger" : "bg-black text-white"}`}>
+        <LiaBookSolid className="fs-1" style={{ color: "#dc3545" }} />
+        <div className="mt-1">Courses</div>
+      </ListGroup.Item>
+
+      <ListGroup.Item 
+        to="/Kambaz/Calendar" 
+        as={Link}
+        className={`text-center border-0 p-2 ${location.pathname === "/Kambaz/Calendar" ? "bg-white text-danger" : "bg-black text-white"}`}>
+        <AiOutlineCalendar className="fs-1" style={{ color: "#dc3545" }} />
+        <div className="mt-1">Calendar</div>
+      </ListGroup.Item>
+
+      <ListGroup.Item 
+        to="/Kambaz/Inbox" 
+        as={Link}
+        className={`text-center border-0 p-2 ${location.pathname === "/Kambaz/Inbox" ? "bg-white text-danger" : "bg-black text-white"}`}>
+        <AiOutlineInbox className="fs-1" style={{ color: "#dc3545" }} />
+        <div className="mt-1">Inbox</div>
+      </ListGroup.Item>
+
+      <ListGroup.Item 
+        to="/Labs" 
+        as={Link}
+        className={`text-center border-0 p-2 ${location.pathname === "/Labs" ? "bg-white text-danger" : "bg-black text-white"}`}>
+        <FaFlask className="fs-1" style={{ color: "#dc3545" }} />
+        <div className="mt-1">Labs</div>
+      </ListGroup.Item>
+    </ListGroup>
+  );
 }
