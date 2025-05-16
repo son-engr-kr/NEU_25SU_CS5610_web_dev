@@ -1,8 +1,55 @@
 body   {  margin: 0;  padding: 0;  }
 body * {  font-family: Arial, Helvetica, sans-serif;  }
 
+#wd-kambaz {
+  position: relative;
+}
+
 @media (min-width: 768px) {
   #wd-kambaz .wd-main-content-offset {
-    padding-left: 140px !important;
+    margin-left: 110px !important;
+    width: calc(100% - 110px) !important;
+    position: relative;
+    z-index: 1;
   }
+}
+
+/* Dashboard Styles */
+#wd-dashboard .card {
+  width: 100%;
+  max-width: 270px;
+  margin: 0 auto;
+}
+
+#wd-dashboard .card-img-top {
+  height: 160px;
+  object-fit: cover;
+}
+
+#wd-dashboard .card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#wd-dashboard .card-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+#wd-dashboard .btn-primary {
+  width: 100%;
+}
+
+#wd-dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#wd-dashboard-published {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
 }
