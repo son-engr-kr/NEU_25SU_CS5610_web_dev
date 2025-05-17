@@ -1,3 +1,6 @@
+# Netlify page
+https://cs5610-hyoungseo.netlify.app
+
 # Lecture:
 
 ## Installing Node
