@@ -1,31 +1,42 @@
 import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
 import { Button, Dropdown } from "react-bootstrap";
+// DONE(A2): 2.4.4 Custom module controls
 export default function ModulesControls() {
- return (
-   <div id="wd-modules-controls" className="text-nowrap">
-     <Button variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn">
-       <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-       Module
-     </Button>
-     <Dropdown className="float-end me-2">
-       <Dropdown.Toggle variant="secondary" size="lg" id="wd-publish-all-btn">
-         <GreenCheckmark /> Publish All
-       </Dropdown.Toggle>
-       <Dropdown.Menu>
-         <Dropdown.Item id="wd-publish-all">
-           <GreenCheckmark /> Publish All
-         </Dropdown.Item>
-         <Dropdown.Item id="wd-publish-all-modules-and-items">
-           <GreenCheckmark /> Publish all modules and items
-         </Dropdown.Item>
-         <Dropdown.Item id="wd-publish-modules-only">
-           <GreenCheckmark /> Publish modules only
-         </Dropdown.Item>
-         {/* TODO(A2): 2.4.4 Create two more items with IDs wd-unpublish-all-modules-and-items and wd-unpublish-modules-only with
-             labels Unpublish all modules and items and Unpublish modules only */}
-       </Dropdown.Menu>
-     </Dropdown>
-     {/* TODO(A2): 2.4.4 Implement the View Progress and Collapse All buttons with IDs wd-view-progress and wd-collapse-all */}
-   </div>
-);}
+    return (
+        <div id="wd-modules-controls" className="d-flex justify-content-end gap-2 mb-3">
+            <Button variant="secondary" size="lg" id="wd-collapse-all">
+                Collapse All
+            </Button>
+            <Button variant="secondary" size="lg" id="wd-view-progress">
+                View Progress
+            </Button>
+            <Dropdown>
+                <Dropdown.Toggle variant="secondary" size="lg" id="wd-publish-all-btn">
+                    <GreenCheckmark /> Publish All
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                    <Dropdown.Item id="wd-publish-all">
+                        <GreenCheckmark /> Publish All
+                    </Dropdown.Item>
+                    <Dropdown.Item id="wd-publish-all-modules-and-items">
+                        <GreenCheckmark /> Publish all modules and items
+                    </Dropdown.Item>
+                    <Dropdown.Item id="wd-publish-modules-only">
+                        <GreenCheckmark /> Publish modules only
+                    </Dropdown.Item>
+                    <Dropdown.Item id="wd-unpublish-all-modules-and-items">
+                        Unpublish all modules and items
+                    </Dropdown.Item>
+                    <Dropdown.Item id="wd-unpublish-modules-only">
+                        Unpublish modules only
+                    </Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+            <Button variant="danger" size="lg" id="wd-add-module-btn">
+                <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+                Module
+            </Button>
+        </div>
+    );
+}
