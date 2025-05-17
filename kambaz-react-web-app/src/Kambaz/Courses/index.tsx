@@ -7,6 +7,7 @@ import Home from "./Home";
 import { FaAlignJustify } from "react-icons/fa";
 import { Button, Offcanvas } from "react-bootstrap";
 import { useState } from "react";
+import PeopleTable from "./People/Table";
 
 // DONE(A2): 2.4.4 - off canvas navigation  
 export default function Courses() {
@@ -42,6 +43,7 @@ export default function Courses() {
             <Route path="Modules" element={<Modules />} />
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+            <Route path="People" element={<PeopleTable />} />
           </Routes>
         </div>
       </div>
