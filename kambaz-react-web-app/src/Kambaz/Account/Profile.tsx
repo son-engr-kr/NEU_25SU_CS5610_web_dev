@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormControl, Button } from "react-bootstrap";
 // DONE(A2): 2.4.9 Styling the Account Screens (On Your Own)
 export default function Profile() {

@@ -3,7 +3,6 @@ import { MdDragIndicator } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { AiOutlineFileText } from "react-icons/ai";
 import { Button, InputGroup, FormControl, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 // DONE(A2): 2.4.7 - Styling the Assignments Screen (On Your Own)
 
 const quizData = [
@@ -66,7 +65,7 @@ export default function Assignments() {
       </Card>
       {/* Assignment List */}
       <div className="bg-white border-top-0 rounded-0" style={{ borderTop: "none" }}>
-        {[1, 2, 3].map((num, idx, arr) => (
+        {[1, 2, 3].map((num) => (
           <div
             key={num}
             className={`d-flex align-items-center p-3 border-bottom`}
@@ -110,7 +109,7 @@ export default function Assignments() {
         </Card.Body>
       </Card>
       <div className="bg-white border-top-0 rounded-0" style={{ borderTop: "none" }}>
-        {quizData.map((quiz, idx) => (
+        {quizData.map((quiz) => (
           <div
             key={quiz.title}
             className="d-flex align-items-center p-3 border-bottom"
@@ -149,7 +148,7 @@ export default function Assignments() {
         </Card.Body>
       </Card>
       <div className="bg-white border-top-0 rounded-0" style={{ borderTop: "none" }}>
-        {examData.map((exam, idx) => (
+        {examData.map((exam) => (
           <div
             key={exam.title}
             className="d-flex align-items-center p-3 border-bottom"
@@ -188,7 +187,7 @@ export default function Assignments() {
         </Card.Body>
       </Card>
       <div className="bg-white border-top-0 rounded-0" style={{ borderTop: "none" }}>
-        {projectData.map((project, idx) => (
+        {projectData.map((project) => (
           <div
             key={project.title}
             className="d-flex align-items-center p-3 border-bottom"
