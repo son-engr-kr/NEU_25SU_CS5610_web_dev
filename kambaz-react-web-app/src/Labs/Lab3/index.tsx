@@ -5,6 +5,7 @@ import IfElse from "./IfElse";
 import TernaryOperator from "./TernaryOperator";
 import ConditionalOutputIfElse from "./ConditionalOutputIfElse";
 import ConditionalOutputInline from "./ConditionalOutputInline";
+import LegacyFunctions from "./LegacyFunctions";
 export default function Lab3() {
   return(
     <div id="wd-lab3">
@@ -16,6 +17,7 @@ export default function Lab3() {
       <TernaryOperator/>
       <ConditionalOutputIfElse/>
       <ConditionalOutputInline/>
+      <LegacyFunctions/>
     </div>
   );
 }
