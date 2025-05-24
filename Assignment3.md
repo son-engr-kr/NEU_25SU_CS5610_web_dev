@@ -19,5 +19,6 @@
 
 # DestructingImports.tsx
 {/* TODO(A3): Add multiply and divide */}
+-> Dont need to do this(already implemented)
 # Add Path Parameter
 http://localhost:5173/#/Labs/Lab3/add/1/2
