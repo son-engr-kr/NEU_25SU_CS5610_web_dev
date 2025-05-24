@@ -16,3 +16,8 @@
 - Work with data-driven navigation, dashboards, and courses
 - Develop data-driven modules and assignments screens
 - Understand the structure of a single-page application (SPA) using React​.
+
+# DestructingImports.tsx
+{/* TODO(A3): Add multiply and divide */}
+# Add Path Parameter
+http://localhost:5173/#/Labs/Lab3/add/1/2
