@@ -1,10 +1,11 @@
+import { courses } from "../Database";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import CourseNavigation from "./Navigation";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes, useParams } from "react-router";
 import Modules from "./Modules";
 import Home from "./Home";
-import { FaAlignJustify } from "react-icons/fa";
+import { FaAlignJustify } from "react-icons/fa6";
 import { Button, Offcanvas, ListGroup } from "react-bootstrap";
 import { useState } from "react";
 import PeopleTable from "./People/Table";
@@ -14,9 +15,9 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { FaFlask } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-// DONE(A2): 2.4.4 - off canvas navigation 
-// DONE(A2): 2.4.4 off canvas Kambas navigation - not perfect
 export default function Courses() {
+  const { cid } = useParams();
+  const course = courses.find((course) => course._id === cid);
   const [showCourseNav, setShowCourseNav] = useState(false);
   const [showKambazNav, setShowKambazNav] = useState(false);
 
@@ -29,7 +30,7 @@ export default function Courses() {
             style={{ cursor: 'pointer' }}
             onClick={() => setShowKambazNav(true)}
           />
-          Course 1234
+          {course && course.name}
         </h2>
         <Button 
           variant="light" 
