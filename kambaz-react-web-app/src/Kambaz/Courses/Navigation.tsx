@@ -1,9 +1,12 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 // TODO(A2): Can I use location.pathname.includes to check if the current path is active?
-export default function CourseNavigation() {
-  const location = useLocation();
-  const { courseId } = useParams();
+
+interface CourseNavigationProps {
+  courseId?: string;
+}
+
+export default function CourseNavigation({ courseId }: CourseNavigationProps) {
   const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades", "People"];
 
   return (

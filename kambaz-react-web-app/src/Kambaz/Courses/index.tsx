@@ -47,7 +47,7 @@ export default function Courses() {
       <div className="d-flex">
         {/* Course Navigation Sidebar - Hidden on mobile */}
         <div className="d-none d-md-block" style={{ width: "200px" }}>
-          <CourseNavigation />
+          <CourseNavigation courseId={cid} />
         </div>
 
         {/* Main Content */}
@@ -81,11 +81,10 @@ export default function Courses() {
             variant="light" 
             onClick={() => setShowCourseNav(false)}
           >
-            ×
           </Button>
         </div>
         <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
-          <CourseNavigation />
+          <CourseNavigation courseId={cid} />
         </div>
       </div>
 
