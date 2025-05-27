@@ -2,7 +2,7 @@ import { courses } from "../Database";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import CourseNavigation from "./Navigation";
-import { Navigate, Route, Routes, useParams } from "react-router";
+import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
 import Modules from "./Modules";
 import Home from "./Home";
 import { FaAlignJustify } from "react-icons/fa6";
@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 export default function Courses() {
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
+  const { pathname } = useLocation();
   const [showCourseNav, setShowCourseNav] = useState(false);
   const [showKambazNav, setShowKambazNav] = useState(false);
 
@@ -31,6 +32,7 @@ export default function Courses() {
             onClick={() => setShowKambazNav(true)}
           />
           {course && course.name}
+          {pathname.split("/")[4] && ` > ${pathname.split("/")[4]}`}
         </h2>
         <Button 
           variant="light" 
