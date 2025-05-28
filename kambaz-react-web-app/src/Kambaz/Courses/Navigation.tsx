@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 // TODO(A2): Can I use location.pathname.includes to check if the current path is active?
 
