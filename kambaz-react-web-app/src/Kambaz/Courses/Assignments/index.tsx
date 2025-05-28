@@ -3,6 +3,8 @@ import { MdDragIndicator } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { AiOutlineFileText } from "react-icons/ai";
 import { Button, InputGroup, FormControl, Card } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
+import * as db from "../../Database";
 // DONE(A2): 2.4.7 - Styling the Assignments Screen (On Your Own)
 
 const quizData = [
@@ -20,7 +22,20 @@ const projectData = [
   { title: "Project" },
 ];
 
+interface Assignment {
+  _id: string;
+  title: string;
+  course: string;
+  module: string;
+  available: string;
+  due: string;
+  points: number;
+}
+
 export default function Assignments() {
+  const { cid } = useParams();
+  const courseAssignments = db.assignments.filter((assignment: Assignment) => assignment.course === cid);
+
   return (
     <div id="wd-assignments" className="p-3" style={{ background: "#f5f5f5", minHeight: "100vh", marginBottom: 0 }}>
       {/* Top bar: Search + Buttons */}
@@ -63,23 +78,29 @@ export default function Assignments() {
           </div>
         </Card.Body>
       </Card>
+
       {/* Assignment List */}
       <div className="bg-white border-top-0 rounded-0" style={{ borderTop: "none" }}>
-        {[1, 2, 3].map((num) => (
+        {courseAssignments.map((assignment: Assignment) => (
           <div
-            key={num}
-            className={`d-flex align-items-center p-3 border-bottom`}
+            key={assignment._id}
+            className="d-flex align-items-center p-3 border-bottom"
             style={{ borderLeft: "4px solid #198754" }}
           >
             <MdDragIndicator className="me-3 text-secondary" />
             <AiOutlineFileText className="me-3 text-success fs-4" />
             <div className="flex-grow-1">
-              <a href="#/Kambaz/Courses/1234/Assignments/123" className="fw-bold fs-5 mb-1 text-decoration-none text-dark">
-                A{num}
-              </a>
-              <div className="text-primary" style={{ fontSize: "0.95em" }}>Multiple Modules <span className="text-secondary">| Not available until May {6 + (num - 1) * 7} at 12:00am</span></div>
+              <Link 
+                to={`/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
+                className="fw-bold fs-5 mb-1 text-decoration-none text-dark"
+              >
+                {assignment.title}
+              </Link>
+              <div className="text-primary" style={{ fontSize: "0.95em" }}>
+                {assignment.module} <span className="text-secondary">| {assignment.available}</span>
+              </div>
               <div className="text-secondary" style={{ fontSize: "0.95em" }}>
-                <span className="fw-bold">Due</span> May {13 + (num - 1) * 7} at 11:59pm | 100 pts
+                <span className="fw-bold">Due</span> {assignment.due} | {assignment.points} pts
               </div>
             </div>
             <FaCheckCircle className="text-success fs-4 ms-2" />
