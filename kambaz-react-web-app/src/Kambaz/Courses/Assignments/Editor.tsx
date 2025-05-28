@@ -1,12 +1,31 @@
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
+import * as db from "../../Database";
 
 // DONE(A2): 2.4.8 - Styling Edit Assignment Screen (On Your Own)
+interface Assignment {
+  _id: string;
+  title: string;
+  course: string;
+  module: string;
+  available: string;
+  due: string;
+  points: number;
+}
+
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
+  const assignment = db.assignments.find((a: Assignment) => a._id === aid);
+
+  if (!assignment) {
+    return <div>Assignment not found</div>;
+  }
+
   return (
     <Form id="wd-assignments-editor" className="p-4" style={{ maxWidth: 500, margin: "0 auto" }}>
       <Form.Group className="mb-3" controlId="wd-name">
         <Form.Label>Assignment Name</Form.Label>
-        <Form.Control type="text" value="A1" />
+        <Form.Control type="text" value={assignment.title} />
       </Form.Group>
 
       <Card className="mb-3">
@@ -32,7 +51,7 @@ export default function AssignmentEditor() {
       <Form.Group as={Row} className="mb-3" controlId="wd-points">
         <Form.Label column md={4} className="text-md-end">Points</Form.Label>
         <Col md={8}>
-          <Form.Control type="number" value={100} />
+          <Form.Control type="number" value={assignment.points} />
         </Col>
       </Form.Group>
 
@@ -86,11 +105,11 @@ export default function AssignmentEditor() {
               </Form.Group>
               <Form.Group className="mb-2" controlId="wd-due">
                 <Form.Label className="mb-1">Due</Form.Label>
-                <Form.Control type="datetime-local" defaultValue="2024-05-13T23:59" />
+                <Form.Control type="datetime-local" defaultValue={assignment.due} />
               </Form.Group>
               <Form.Group className="mb-2" controlId="wd-available-from">
                 <Form.Label className="mb-1">Available from</Form.Label>
-                <Form.Control type="datetime-local" defaultValue="2024-05-06T00:00" />
+                <Form.Control type="datetime-local" defaultValue={assignment.available} />
               </Form.Group>
               <Form.Group className="mb-2" controlId="wd-until">
                 <Form.Label className="mb-1">Until</Form.Label>
@@ -102,8 +121,12 @@ export default function AssignmentEditor() {
       </Row>
 
       <div className="d-flex justify-content-end gap-2 mt-4">
-        <Button variant="secondary">Cancel</Button>
-        <Button variant="danger">Save</Button>
+        <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+          <Button variant="secondary">Cancel</Button>
+        </Link>
+        <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+          <Button variant="danger">Save</Button>
+        </Link>
       </div>
     </Form>
   );

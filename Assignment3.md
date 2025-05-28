@@ -25,3 +25,6 @@ http://localhost:5173/#/Labs/Lab3/add/1/2
 
 # due date at Assignments.json
 Kambaz/Database/assignments.json
+
+# format function in Assignments/index.tsx
+formatDate()

@@ -4,8 +4,8 @@
         "title": "Propulsion Assignment",
         "course": "RS101",
         "module": "Multiple Modules",
-        "available": "May 6 at 12:00am",
-        "due": "May 13 at 11:59pm",
+        "available": "2024-05-06T00:00",
+        "due": "2024-05-13T23:59",
         "points": 100
     },
     {
@@ -13,8 +13,8 @@
         "title": "Combustion Analysis",
         "course": "RS101",
         "module": "Multiple Modules",
-        "available": "May 13 at 12:00am",
-        "due": "May 20 at 11:59pm",
+        "available": "2024-05-13T00:00",
+        "due": "2024-05-20T23:59",
         "points": 100
     },
     {
@@ -22,8 +22,8 @@
         "title": "Nozzle Design Project",
         "course": "RS101",
         "module": "Multiple Modules",
-        "available": "May 20 at 12:00am",
-        "due": "May 27 at 11:59pm",
+        "available": "2024-05-20T00:00",
+        "due": "2024-05-27T23:59",
         "points": 100
     },
     {
@@ -31,8 +31,8 @@
         "title": "Aerodynamics Quiz",
         "course": "RS102",
         "module": "Multiple Modules",
-        "available": "May 6 at 12:00am",
-        "due": "May 13 at 11:59pm",
+        "available": "2024-05-06T00:00",
+        "due": "2024-05-13T23:59",
         "points": 100
     },
     {
@@ -40,8 +40,8 @@
         "title": "Flow Analysis",
         "course": "RS102",
         "module": "Multiple Modules",
-        "available": "May 13 at 12:00am",
-        "due": "May 20 at 11:59pm",
+        "available": "2024-05-13T00:00",
+        "due": "2024-05-20T23:59",
         "points": 100
     },
     {
@@ -49,8 +49,8 @@
         "title": "Heating Analysis",
         "course": "RS102",
         "module": "Multiple Modules",
-        "available": "May 20 at 12:00am",
-        "due": "May 27 at 11:59pm",
+        "available": "2024-05-20T00:00",
+        "due": "2024-05-27T23:59",
         "points": 100
     },
     {
@@ -58,8 +58,8 @@
         "title": "Structural Design Task",
         "course": "RS103",
         "module": "Multiple Modules",
-        "available": "May 6 at 12:00am",
-        "due": "May 13 at 11:59pm",
+        "available": "2024-05-06T00:00",
+        "due": "2024-05-13T23:59",
         "points": 100
     },
     {
@@ -67,8 +67,8 @@
         "title": "Orbital Calculations",
         "course": "RS103",
         "module": "Multiple Modules",
-        "available": "May 13 at 12:00am",
-        "due": "May 20 at 11:59pm",
+        "available": "2024-05-13T00:00",
+        "due": "2024-05-20T23:59",
         "points": 100
     },
     {
@@ -76,8 +76,8 @@
         "title": "Systems Engineering Exam",
         "course": "RS103",
         "module": "Multiple Modules",
-        "available": "May 20 at 12:00am",
-        "due": "May 27 at 11:59pm",
+        "available": "2024-05-20T00:00",
+        "due": "2024-05-27T23:59",
         "points": 100
     }
 ]

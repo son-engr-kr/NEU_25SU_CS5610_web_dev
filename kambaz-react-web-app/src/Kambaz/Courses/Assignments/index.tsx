@@ -22,6 +22,23 @@ const projectData = [
   { title: "Project" },
 ];
 
+// Format date from "2024-05-06T00:00" to "May 6 at 12:00am"
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  const months = ["January", "February", "March", "April", "May", "June", 
+                 "July", "August", "September", "October", "November", "December"];
+  
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? 'pm' : 'am';
+  const formattedHours = hours % 12 || 12;
+  const formattedMinutes = minutes.toString().padStart(2, '0');
+  
+  return `${month} ${day} at ${formattedHours}:${formattedMinutes}${ampm}`;
+}
+
 interface Assignment {
   _id: string;
   title: string;
@@ -97,10 +114,10 @@ export default function Assignments() {
                 {assignment.title}
               </Link>
               <div className="text-primary" style={{ fontSize: "0.95em" }}>
-                {assignment.module} <span className="text-secondary">| {assignment.available}</span>
+                {assignment.module} <span className="text-secondary">| {formatDate(assignment.available)}</span>
               </div>
               <div className="text-secondary" style={{ fontSize: "0.95em" }}>
-                <span className="fw-bold">Due</span> {assignment.due} | {assignment.points} pts
+                <span className="fw-bold">Due</span> {formatDate(assignment.due)} | {assignment.points} pts
               </div>
             </div>
             <FaCheckCircle className="text-success fs-4 ms-2" />
