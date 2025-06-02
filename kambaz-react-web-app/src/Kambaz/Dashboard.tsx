@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as db from "./Database";
 import { Button } from "react-bootstrap";
@@ -5,7 +6,7 @@ import { Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 export default function Dashboard() {
-  const courses = db.courses;
+  const [courses, setCourses] = useState<any[]>(db.courses);
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
