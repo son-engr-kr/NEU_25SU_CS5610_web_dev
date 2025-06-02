@@ -6,3 +6,7 @@ npm  install  react-redux --save
 npm  install  @reduxjs/toolkit --save
 
 ```
+
+
+## 4.3.5.2 Todos Reducer
+- Modify Lab3/index.tsx
