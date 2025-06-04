@@ -10,14 +10,21 @@ const enrollmentsSlice = createSlice({
   initialState,
   reducers: {
     enrollUser: (state, { payload: { userId, courseId } }) => {
+      console.log("enrollUser reducer called with:", { userId, courseId });
+      console.log("Current enrollments before:", state.enrollments);
+      
       const newEnrollment = {
         _id: new Date().getTime().toString(),
         user: userId,
         course: courseId,
       };
       state.enrollments = [...state.enrollments, newEnrollment] as any;
+      
+      console.log("New enrollment created:", newEnrollment);
+      console.log("Current enrollments after:", state.enrollments);
     },
     unenrollUser: (state, { payload: { userId, courseId } }) => {
+      console.log("unenrollUser reducer called with:", { userId, courseId });
       state.enrollments = state.enrollments.filter(
         (e: any) => !(e.user === userId && e.course === courseId)
       );

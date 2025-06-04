@@ -104,64 +104,75 @@ export default function Dashboard() {
           {displayedCourses.map((course: any) => (
             <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px" }}>
               <Card>
-                <Link to={isEnrolled(course._id) ? `/Kambaz/Courses/${course._id}/Home` : "#"}
-                  className={`wd-dashboard-course-link text-decoration-none text-dark ${!isEnrolled(course._id) ? 'pe-none' : ''}`}
-                  onClick={(e) => {
-                    if (!isEnrolled(course._id)) {
-                      e.preventDefault();
-                    }
-                  }}
-                >
-                  <Card.Img src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
-                  <Card.Body className="card-body">
-                    <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
-                      {course.name} 
-                    </Card.Title>
-                    <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
-                      {course.description} 
-                    </Card.Text>
-                    <div className="d-flex justify-content-between">
-                      {isEnrolled(course._id) ? (
-                        <Button variant="primary"> Go </Button>
-                      ) : (
-                        <span></span>
-                      )}
+                {/* Image and Content - Link only when enrolled */}
+                {isEnrolled(course._id) ? (
+                  <Link to={`/Kambaz/Courses/${course._id}/Home`}
+                    className="text-decoration-none text-dark">
+                    <Card.Img src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
+                    <Card.Body className="card-body">
+                      <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                        {course.name} 
+                      </Card.Title>
+                      <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
+                        {course.description} 
+                      </Card.Text>
+                    </Card.Body>
+                  </Link>
+                ) : (
+                  <>
+                    <Card.Img src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
+                    <Card.Body className="card-body">
+                      <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                        {course.name} 
+                      </Card.Title>
+                      <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
+                        {course.description} 
+                      </Card.Text>
+                    </Card.Body>
+                  </>
+                )}
 
-                      {!showAllCourses && currentUser.role === "FACULTY" && (
-                        <>
-                          <button id="wd-edit-course-click"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setCourse(course);
-                            }}
-                            className="btn btn-warning me-2 float-end" >
-                            Edit
-                          </button>
+                {/* Buttons Section - Outside of Link */}
+                <Card.Body className="pt-0">
+                  <div className="d-flex justify-content-between">
+                    {isEnrolled(course._id) ? (
+                      <Link to={`/Kambaz/Courses/${course._id}/Home`} className="text-decoration-none">
+                        <Button variant="primary">Go</Button>
+                      </Link>
+                    ) : (
+                      <span></span>
+                    )}
 
-                          <button onClick={(event) => {
-                            event.preventDefault();
-                            handleDeleteCourse(course._id);
-                          }} className="btn btn-danger"
-                            id="wd-delete-course-click">
-                            Delete
-                          </button>
-                        </>
-                      )}
-
-                      {showAllCourses && (
-                        <Button 
-                          variant={isEnrolled(course._id) ? "danger" : "success"}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            handleEnrollToggle(course._id);
-                          }}
+                    {!showAllCourses && currentUser.role === "FACULTY" && (
+                      <>
+                        <button
+                          onClick={() => setCourse(course)}
+                          className="btn btn-warning me-2"
                         >
-                          {isEnrolled(course._id) ? "Unenroll" : "Enroll"}
-                        </Button>
-                      )}
-                    </div>
-                  </Card.Body>
-                </Link>
+                          Edit
+                        </button>
+                        <button 
+                          onClick={() => handleDeleteCourse(course._id)}
+                          className="btn btn-danger"
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+
+                    {showAllCourses && (
+                      <Button 
+                        variant={isEnrolled(course._id) ? "danger" : "success"}
+                        onClick={() => {
+                          console.log("Button clicked!");
+                          handleEnrollToggle(course._id);
+                        }}
+                      >
+                        {isEnrolled(course._id) ? "Unenroll" : "Enroll"}
+                      </Button>
+                    )}
+                  </div>
+                </Card.Body>
               </Card>
             </Col>
           ))}
