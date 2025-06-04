@@ -17,8 +17,15 @@ const assignmentsSlice = createSlice({
       state.assignments = [...state.assignments, newAssignment] as any;
     },
     deleteAssignment: (state, { payload: assignmentId }) => {
+      console.log("deleteAssignment reducer called with:", assignmentId);
+      console.log("Current assignments before delete:", state.assignments);
+      
+      const originalLength = state.assignments.length;
       state.assignments = state.assignments.filter(
         (a: any) => a._id !== assignmentId);
+      
+      console.log("Assignments after delete:", state.assignments);
+      console.log("Length changed from", originalLength, "to", state.assignments.length);
     },
     updateAssignment: (state, { payload: assignment }) => {
       state.assignments = state.assignments.map((a: any) =>

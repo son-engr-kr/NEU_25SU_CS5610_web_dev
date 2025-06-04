@@ -1,4 +1,5 @@
-import { FaSearch, FaPlus, FaCheckCircle } from "react-icons/fa";
+import { FaSearch, FaPlus, FaCheckCircle, FaTrash } from "react-icons/fa";
+import { FaPencil } from "react-icons/fa6";
 import { MdDragIndicator } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { AiOutlineFileText } from "react-icons/ai";
@@ -57,8 +58,18 @@ export default function Assignments() {
   const dispatch = useDispatch();
   const courseAssignments = assignments.filter((assignment: Assignment) => assignment.course === cid);
 
+  console.log("Assignments component rendered");
+  console.log("Course ID:", cid);
+  console.log("All assignments:", assignments);
+  console.log("Course assignments:", courseAssignments);
+  console.log("Current user:", currentUser);
+
   const handleDeleteAssignment = (assignmentId: string) => {
-    if (window.confirm("Are you sure you want to remove this assignment?")) {
+    console.log("handleDeleteAssignment called with:", assignmentId);
+    const result = window.confirm("Are you sure you want to remove this assignment?");
+    console.log("User confirmed:", result);
+    if (result) {
+      console.log("Dispatching deleteAssignment");
       dispatch(deleteAssignment(assignmentId));
     }
   };
@@ -134,17 +145,27 @@ export default function Assignments() {
                 <span className="fw-bold">Due</span> {formatDate(assignment.due)} | {assignment.points} pts
               </div>
             </div>
-            <FaCheckCircle className="text-success fs-4 ms-2" />
+            
+            {/* Control Buttons */}
             {currentUser.role === "FACULTY" && (
-              <Button 
-                variant="danger" 
-                size="sm" 
-                className="ms-2"
-                onClick={() => handleDeleteAssignment(assignment._id)}
-              >
-                Delete
-              </Button>
+              <div className="float-end d-flex align-items-center">
+                <Link to={`/Kambaz/Courses/${cid}/Assignments/${assignment._id}`} className="text-decoration-none">
+                  <FaPencil className="text-primary me-3" style={{ cursor: "pointer" }} />
+                </Link>
+                <FaTrash 
+                  className="text-danger me-3" 
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => {
+                    console.log("Trash icon clicked!");
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleDeleteAssignment(assignment._id);
+                  }}
+                />
+              </div>
             )}
+            
+            <FaCheckCircle className="text-success fs-4 ms-2" />
             <Button variant="light" size="sm" className="ms-2 p-1">
               <BsThreeDotsVertical />
             </Button>
