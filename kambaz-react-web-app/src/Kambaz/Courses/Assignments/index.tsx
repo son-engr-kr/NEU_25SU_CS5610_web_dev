@@ -4,7 +4,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { AiOutlineFileText } from "react-icons/ai";
 import { Button, InputGroup, FormControl, Card } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
-import * as db from "../../Database";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteAssignment } from "./reducer";
 // DONE(A2): 2.4.7 - Styling the Assignments Screen (On Your Own)
 
 const quizData = [
@@ -51,7 +52,16 @@ interface Assignment {
 
 export default function Assignments() {
   const { cid } = useParams();
-  const courseAssignments = db.assignments.filter((assignment: Assignment) => assignment.course === cid);
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const dispatch = useDispatch();
+  const courseAssignments = assignments.filter((assignment: Assignment) => assignment.course === cid);
+
+  const handleDeleteAssignment = (assignmentId: string) => {
+    if (window.confirm("Are you sure you want to remove this assignment?")) {
+      dispatch(deleteAssignment(assignmentId));
+    }
+  };
 
   return (
     <div id="wd-assignments" className="p-3" style={{ background: "#f5f5f5", minHeight: "100vh", marginBottom: 0 }}>
@@ -71,9 +81,13 @@ export default function Assignments() {
           <Button variant="outline-secondary" className="fw-bold d-flex align-items-center">
             <FaPlus className="me-1" /> Group
           </Button>
-          <Button variant="danger" className="fw-bold d-flex align-items-center">
-            <FaPlus className="me-1" /> Assignment
-          </Button>
+          {currentUser.role === "FACULTY" && (
+            <Link to={`/Kambaz/Courses/${cid}/Assignments/new`}>
+              <Button variant="danger" className="fw-bold d-flex align-items-center">
+                <FaPlus className="me-1" /> Assignment
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
 
@@ -121,6 +135,16 @@ export default function Assignments() {
               </div>
             </div>
             <FaCheckCircle className="text-success fs-4 ms-2" />
+            {currentUser.role === "FACULTY" && (
+              <Button 
+                variant="danger" 
+                size="sm" 
+                className="ms-2"
+                onClick={() => handleDeleteAssignment(assignment._id)}
+              >
+                Delete
+              </Button>
+            )}
             <Button variant="light" size="sm" className="ms-2 p-1">
               <BsThreeDotsVertical />
             </Button>

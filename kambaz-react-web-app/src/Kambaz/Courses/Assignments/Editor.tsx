@@ -1,6 +1,8 @@
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
-import { useParams, Link } from "react-router-dom";
-import * as db from "../../Database";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addAssignment, updateAssignment } from "./reducer";
+import { useState, useEffect } from "react";
 
 // DONE(A2): 2.4.8 - Styling Edit Assignment Screen (On Your Own)
 interface Assignment {
@@ -11,39 +13,70 @@ interface Assignment {
   available: string;
   due: string;
   points: number;
+  description?: string;
 }
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const assignment = db.assignments.find((a: Assignment) => a._id === aid);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
 
-  if (!assignment) {
-    return <div>Assignment not found</div>;
-  }
+  const isNew = aid === "new";
+  const existingAssignment = assignments.find((a: Assignment) => a._id === aid);
+
+  const [assignment, setAssignment] = useState<Assignment>({
+    _id: "",
+    title: "New Assignment",
+    course: cid || "",
+    module: "Module",
+    available: "2024-05-06T00:00",
+    due: "2024-05-13T23:59",
+    points: 100,
+    description: "New Assignment Description"
+  });
+
+  useEffect(() => {
+    if (!isNew && existingAssignment) {
+      setAssignment(existingAssignment);
+    }
+  }, [isNew, existingAssignment]);
+
+  const handleSave = () => {
+    if (isNew) {
+      dispatch(addAssignment(assignment));
+    } else {
+      dispatch(updateAssignment(assignment));
+    }
+    navigate(`/Kambaz/Courses/${cid}/Assignments`);
+  };
+
+  const handleCancel = () => {
+    navigate(`/Kambaz/Courses/${cid}/Assignments`);
+  };
 
   return (
     <Form id="wd-assignments-editor" className="p-4" style={{ maxWidth: 500, margin: "0 auto" }}>
       <Form.Group className="mb-3" controlId="wd-name">
         <Form.Label>Assignment Name</Form.Label>
-        <Form.Control type="text" value={assignment.title} />
+        <Form.Control 
+          type="text" 
+          value={assignment.title}
+          onChange={(e) => setAssignment({ ...assignment, title: e.target.value })}
+        />
       </Form.Group>
 
       <Card className="mb-3">
         <Card.Body>
-          <div className="mb-2">
-            <span className="text-danger">The assignment is available online</span>
-          </div>
-          <div className="mb-2">
-            Submit a link to the landing page of your Web application running on Netlify.
-          </div>
-          <div className="mb-2">The landing page should include the following:</div>
-          <ul className="mb-2">
-            <li>Your full name and section</li>
-            <li>Links to each of the lab assignments</li>
-            <li>Link to the Kanbas application</li>
-            <li>Links to all relevant source code repositories</li>
-          </ul>
-          <div>The Kanbas application should include a link to navigate back to the landing page.</div>
+          <Form.Group className="mb-3">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              value={assignment.description}
+              onChange={(e) => setAssignment({ ...assignment, description: e.target.value })}
+            />
+          </Form.Group>
         </Card.Body>
       </Card>
 
@@ -51,7 +84,11 @@ export default function AssignmentEditor() {
       <Form.Group as={Row} className="mb-3" controlId="wd-points">
         <Form.Label column md={4} className="text-md-end">Points</Form.Label>
         <Col md={8}>
-          <Form.Control type="number" value={assignment.points} />
+          <Form.Control 
+            type="number" 
+            value={assignment.points}
+            onChange={(e) => setAssignment({ ...assignment, points: parseInt(e.target.value) })}
+          />
         </Col>
       </Form.Group>
 
@@ -105,11 +142,19 @@ export default function AssignmentEditor() {
               </Form.Group>
               <Form.Group className="mb-2" controlId="wd-due">
                 <Form.Label className="mb-1">Due</Form.Label>
-                <Form.Control type="datetime-local" defaultValue={assignment.due} />
+                <Form.Control 
+                  type="datetime-local" 
+                  value={assignment.due}
+                  onChange={(e) => setAssignment({ ...assignment, due: e.target.value })}
+                />
               </Form.Group>
               <Form.Group className="mb-2" controlId="wd-available-from">
                 <Form.Label className="mb-1">Available from</Form.Label>
-                <Form.Control type="datetime-local" defaultValue={assignment.available} />
+                <Form.Control 
+                  type="datetime-local" 
+                  value={assignment.available}
+                  onChange={(e) => setAssignment({ ...assignment, available: e.target.value })}
+                />
               </Form.Group>
               <Form.Group className="mb-2" controlId="wd-until">
                 <Form.Label className="mb-1">Until</Form.Label>
@@ -121,12 +166,8 @@ export default function AssignmentEditor() {
       </Row>
 
       <div className="d-flex justify-content-end gap-2 mt-4">
-        <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
-          <Button variant="secondary">Cancel</Button>
-        </Link>
-        <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
-          <Button variant="danger">Save</Button>
-        </Link>
+        <Button variant="secondary" onClick={handleCancel}>Cancel</Button>
+        <Button variant="danger" onClick={handleSave}>Save</Button>
       </div>
     </Form>
   );
