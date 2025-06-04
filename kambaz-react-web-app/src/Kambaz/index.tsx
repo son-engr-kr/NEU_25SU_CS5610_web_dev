@@ -6,6 +6,7 @@ import KambazNavigation from "./Navigation";
 import Courses from "./Courses";
 import "./styles.css";
 import ProtectedRoute from "./Account/ProtectedRoute";
+import EnrollmentProtectedRoute from "./Account/EnrollmentProtectedRoute";
 
 export default function Kambaz() {
   return (
@@ -20,9 +21,11 @@ export default function Kambaz() {
               <Dashboard />
             </ProtectedRoute>
           } />
-          <Route path="Courses/:cid/*" element={<ProtectedRoute>
-            <Courses />
-          </ProtectedRoute>} />
+          <Route path="Courses/:cid/*" element={
+            <EnrollmentProtectedRoute>
+              <Courses />
+            </EnrollmentProtectedRoute>
+          } />
           <Route path="/Calendar" element={<h1>Calendar</h1>} />
           <Route path="/Inbox" element={<h1>Inbox</h1>} />
         </Routes>
