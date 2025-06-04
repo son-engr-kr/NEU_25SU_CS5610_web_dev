@@ -6,10 +6,11 @@ import ModuleControlButtons from './ModuleControlButtons';
 
 import { useParams } from "react-router";
 import * as db from "../../Database";
+import { useState } from 'react';
 
 export default function Modules() {
   const { cid } = useParams();
-  const modules = db.modules;
+  const [modules, setModules] = useState<any[]>(db.modules);
   return (
     <div>
       <ModulesControls />
