@@ -1,4 +1,4 @@
-import { courses } from "../Database";
+// import { courses } from "../Database";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import CourseNavigation from "./Navigation";
@@ -15,7 +15,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { FaFlask } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-export default function Courses() {
+export default function Courses({ courses }: { courses: any[]; }) {
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
   const { pathname } = useLocation();
