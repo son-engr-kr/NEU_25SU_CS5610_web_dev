@@ -14,10 +14,12 @@ import { LiaBookSolid } from "react-icons/lia";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaFlask } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export default function Courses({ courses }: { courses: any[]; }) {
+export default function Courses() {
   const { cid } = useParams();
-  const course = courses.find((course) => course._id === cid);
+  const { courses } = useSelector((state: any) => state.coursesReducer);
+  const course = courses.find((course: any) => course._id === cid);
   const { pathname } = useLocation();
   const [showCourseNav, setShowCourseNav] = useState(false);
   const [showKambazNav, setShowKambazNav] = useState(false);
