@@ -14,29 +14,35 @@ export default function Modules() {
   const [modules, setModules] = useState<any[]>(db.modules);
   const [moduleName, setModuleName] = useState("");
   const addModule = () => {
-    setModules([ ...modules, { _id: uuidv4(), name: moduleName, course: cid, lessons: [] } ]);
+    setModules([...modules, { _id: uuidv4(), name: moduleName, course: cid, lessons: [] }]);
     setModuleName("");
   };
+  const deleteModule = (moduleId: string) => {
+    setModules(modules.filter((m) => m._id !== moduleId));
+  };
+
 
   return (
     <div>
-      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={addModule}/>
+      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={addModule} />
 
       <ListGroup id="wd-modules" className="rounded-0">
         {modules
           .filter((module: any) => module.course === cid)
           .map((module: any) => (
-          <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
-            <div className="wd-title p-3 ps-2 bg-secondary">
-              <BsGripVertical className="me-2 fs-3" /> {module.name} <ModuleControlButtons />
-            </div>
-            {module.lessons && (
-              <ListGroup className="wd-lessons rounded-0">
-                {module.lessons.map((lesson: any) => (
-                  <ListGroup.Item className="wd-lesson p-3 ps-1">
-                    <BsGripVertical className="me-2 fs-3" /> {lesson.name} <LessonControlButtons />
-                  </ListGroup.Item>
-                ))}</ListGroup>)}</ListGroup.Item>))}</ListGroup>
+            <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
+              <div className="wd-title p-3 ps-2 bg-secondary">
+                <BsGripVertical className="me-2 fs-3" />
+                {module.name}
+                <ModuleControlButtons moduleId={module._id} deleteModule={deleteModule} />
+              </div>
+              {module.lessons && (
+                <ListGroup className="wd-lessons rounded-0">
+                  {module.lessons.map((lesson: any) => (
+                    <ListGroup.Item className="wd-lesson p-3 ps-1">
+                      <BsGripVertical className="me-2 fs-3" /> {lesson.name} <LessonControlButtons />
+                    </ListGroup.Item>
+                  ))}</ListGroup>)}</ListGroup.Item>))}</ListGroup>
 
     </div>
   );
