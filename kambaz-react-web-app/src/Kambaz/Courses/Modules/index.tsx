@@ -7,13 +7,20 @@ import ModuleControlButtons from './ModuleControlButtons';
 import { useParams } from "react-router";
 import * as db from "../../Database";
 import { useState } from 'react';
+import { v4 as uuidv4 } from "uuid";
 
 export default function Modules() {
   const { cid } = useParams();
   const [modules, setModules] = useState<any[]>(db.modules);
+  const [moduleName, setModuleName] = useState("");
+  const addModule = () => {
+    setModules([ ...modules, { _id: uuidv4(), name: moduleName, course: cid, lessons: [] } ]);
+    setModuleName("");
+  };
+
   return (
     <div>
-      <ModulesControls />
+      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={addModule}/>
 
       <ListGroup id="wd-modules" className="rounded-0">
         {modules
