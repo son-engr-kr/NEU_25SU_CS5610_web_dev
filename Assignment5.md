@@ -1,6 +1,8 @@
 # bash
 ## server
 ```bash
+npm  install  cors
+
 nodemon  index.js
 ```
 
