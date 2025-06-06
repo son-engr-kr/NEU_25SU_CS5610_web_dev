@@ -5,6 +5,10 @@ const assignment = {
 };
 export default function WorkingWithObjects(app) {
     app.get("/lab5/assignment", (req, res) => {
-        res.json(assignment);
+      res.json(assignment);
     });
-};
+    app.get("/lab5/assignment/title", (req, res) => {
+      res.json(assignment.title);
+    });
+  }
+  
