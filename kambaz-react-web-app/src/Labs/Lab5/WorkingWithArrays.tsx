@@ -42,6 +42,15 @@ export default function WorkingWithArrays() {
                 Create Todo
             </a>
             <hr/>
+            
+            <h4>Deleting from an Array</h4>
+            <a id="wd-delete-todo" className="btn btn-primary float-end" 
+               href={`${API}/${todo.id}/delete`}>
+                Delete Todo with ID = {todo.id}
+            </a>
+            <FormControl defaultValue={todo.id} className="w-50" 
+                onChange={(e) => setTodo({ ...todo, id: e.target.value })}/>
+            <hr/>
         </div>
     );
 } 
