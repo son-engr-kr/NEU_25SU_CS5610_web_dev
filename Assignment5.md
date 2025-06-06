@@ -1,8 +1,10 @@
-# execute server
+# bash
+## server
 ```bash
 nodemon  index.js
 ```
 
+## react
 ```bash
  npm  install  axios
 ```
