@@ -1,4 +1,5 @@
 import EnvironmentVariables from "./EnvironmentVariables";
+import PathParameters from "./PathParameters";
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 export default function Lab5() {
   return (
@@ -10,5 +11,6 @@ export default function Lab5() {
         </a>
       </div><hr />
       <EnvironmentVariables />
+      <PathParameters />
     </div>
 );}
