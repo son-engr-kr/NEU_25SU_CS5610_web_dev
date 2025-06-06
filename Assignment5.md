@@ -1,0 +1,4 @@
+```bash
+nodemon  index.js
+```
+
