@@ -22,6 +22,19 @@ export default function WorkingWithArrays() {
             <FormControl id="wd-todo-id" defaultValue={todo.id} className="w-50"
                 onChange={(e) => setTodo({ ...todo, id: e.target.value })} />
             <hr />
+            
+            <h4>Filtering Array Items</h4>
+            <div className="d-flex gap-2 mb-3">
+                <a id="wd-retrieve-completed-todos" className="btn btn-primary"
+                   href={`${API}?completed=true`}>
+                    Get Completed Todos
+                </a>
+                <a id="wd-retrieve-incomplete-todos" className="btn btn-secondary"
+                   href={`${API}?completed=false`}>
+                    Get Incomplete Todos
+                </a>
+            </div>
+            <hr/>
         </div>
     );
 } 
