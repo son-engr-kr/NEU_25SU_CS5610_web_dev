@@ -6,12 +6,23 @@ export default function UserRoutes(app) {
   const findAllUsers = (req, res) => { };
   const findUserById = (req, res) => { };
   const updateUser = (req, res) => { };
-  const signup = (req, res) => { };
+  const signup = (req, res) => {
+    // Check if the username already exists
+    const user = dao.findUserByUsername(req.body.username);
+    if (user) {
+      // If username exists, send a 400 status with a message
+      res.status(400).json({ message: "Username already in use" });
+      return;
+    }
+    // Create a new user and set it as the current user
+    currentUser = dao.createUser(req.body);
+    // Respond with the newly created user
+    res.json(currentUser);
+  };
   const signin = (req, res) => {
     const { username, password } = req.body;
     currentUser = dao.findUserByCredentials(username, password);
     res.json(currentUser);
-
   };
   const signout = (req, res) => { };
   const profile = (req, res) => { };
