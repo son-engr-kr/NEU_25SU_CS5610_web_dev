@@ -25,13 +25,15 @@ export default function UserRoutes(app) {
     // Respond with the newly created user
     res.json(currentUser);
   };
-  const signin = (req, res) => {
+  const signin = async (req, res) => {
     const { username, password } = req.body;
     currentUser = dao.findUserByCredentials(username, password);
     res.json(currentUser);
   };
   const signout = (req, res) => { };
-  const profile = (req, res) => { };
+  const profile = async (req, res) => {
+    res.json(currentUser);
+  };
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", findUserById);

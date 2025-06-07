@@ -7,29 +7,32 @@ import Courses from "./Courses";
 import "./styles.css";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import EnrollmentProtectedRoute from "./Account/EnrollmentProtectedRoute";
+import Session from "./Account/Session";
 
 export default function Kambaz() {
   return (
-    <div id="wd-kambaz">
-      <KambazNavigation />
-      <div className="wd-main-content-offset p-3">
-        <Routes>
-          <Route path="/" element={<Navigate to="Account" />} />
-          <Route path="/Account/*" element={<Account />} />
-          <Route path="Dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="Courses/:cid/*" element={
-            <EnrollmentProtectedRoute>
-              <Courses />
-            </EnrollmentProtectedRoute>
-          } />
-          <Route path="/Calendar" element={<h1>Calendar</h1>} />
-          <Route path="/Inbox" element={<h1>Inbox</h1>} />
-        </Routes>
+    <Session>
+      <div id="wd-kambaz">
+        <KambazNavigation />
+        <div className="wd-main-content-offset p-3">
+          <Routes>
+            <Route path="/" element={<Navigate to="Account" />} />
+            <Route path="/Account/*" element={<Account />} />
+            <Route path="Dashboard" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="Courses/:cid/*" element={
+              <EnrollmentProtectedRoute>
+                <Courses />
+              </EnrollmentProtectedRoute>
+            } />
+            <Route path="/Calendar" element={<h1>Calendar</h1>} />
+            <Route path="/Inbox" element={<h1>Inbox</h1>} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Session>
   );
 }
