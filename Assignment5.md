@@ -2,6 +2,8 @@
 ## server
 ```bash
 npm  install  cors
+npm install express-session
+npm  install  dotenv
 
 nodemon  index.js
 ```
