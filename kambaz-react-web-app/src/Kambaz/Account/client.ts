@@ -1,5 +1,7 @@
 import axios from "axios";
-export const USERS_API = import.meta.env.VITE_REMOTE_SERVER;
+
+export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
+export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
 export const signin = async (credentials: any) => {
   const response = await axios.post( `${USERS_API}/signin`, credentials );
@@ -18,6 +20,11 @@ export const updateUser = async (user: any) => {
 
 export const profile = async () => {
   const response = await axios.post(`${USERS_API}/profile`);
+  return response.data;
+};
+
+export const signout = async () => {
+  const response = await axios.post(`${USERS_API}/signout`);
   return response.data;
 };
   
