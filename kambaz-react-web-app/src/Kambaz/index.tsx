@@ -13,9 +13,13 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export default function Kambaz() {
-  const [_, setCourses] = useState<any[]>([]);
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const [courses, setCourses] = useState<any[]>([]);
+  const [course, setCourse] = useState<any>({
+    _id: "1234", name: "New Course", number: "New Number",
+    startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
+  });
 
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const fetchCourses = async () => {
     try {
       const courses = await userClient.findMyCourses();
@@ -24,6 +28,16 @@ export default function Kambaz() {
       console.error(error);
     }
   };
+  useEffect(() => {
+    fetchCourses();
+  }, [currentUser]);
+
+
+  const addNewCourse = async () => {
+    const newCourse = await userClient.createCourse(course);
+    setCourses([ ...courses, newCourse ]);
+  };
+
 
   useEffect(() => {
     fetchCourses();
