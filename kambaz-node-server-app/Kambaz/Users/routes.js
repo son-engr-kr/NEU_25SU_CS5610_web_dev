@@ -1,4 +1,6 @@
 import * as dao from "./dao.js";
+import * as courseDao from "../Courses/dao.js";
+
 export default function UserRoutes(app) {
   const createUser = (req, res) => { };
   const deleteUser = (req, res) => { };
@@ -26,6 +28,7 @@ export default function UserRoutes(app) {
     req.session["currentUser"] = currentUser;
     res.json(currentUser);
   };
+
   const signin = async (req, res) => {
     const { username, password } = req.body;
     const currentUser = dao.findUserByCredentials(username, password);
@@ -35,8 +38,8 @@ export default function UserRoutes(app) {
     } else {
       res.status(401).json({ message: "Unable to login. Try again later." });
     }
-
   };
+
   const signout = (req, res) => {
     req.session.destroy();
     res.sendStatus(200);
@@ -48,9 +51,23 @@ export default function UserRoutes(app) {
       res.sendStatus(401);
       return;
     }
-
     res.json(currentUser);
   };
+
+  const findCoursesForEnrolledUser = (req, res) => {
+    let { userId } = req.params;
+    if (userId === "current") {
+      const currentUser = req.session["currentUser"];
+      if (!currentUser) {
+        res.sendStatus(401);
+        return;
+      }
+      userId = currentUser._id;
+    }
+    const courses = courseDao.findCoursesForEnrolledUser(userId);
+    res.json(courses);
+  };
+
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", findUserById);
@@ -60,4 +77,5 @@ export default function UserRoutes(app) {
   app.post("/api/users/signin", signin);
   app.post("/api/users/signout", signout);
   app.post("/api/users/profile", profile);
+  app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
 }

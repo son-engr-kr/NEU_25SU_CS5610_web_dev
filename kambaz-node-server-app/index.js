@@ -1,12 +1,14 @@
 import "dotenv/config";
-import express from 'express'
-import Hello from "./Hello.js"
+import express from "express";
 import Lab5 from "./Lab5/index.js";
+import UserRoutes from "./Kambaz/Users/routes.js";
+import CourseRoutes from "./Kambaz/Courses/routes.js"; // Import CourseRoutes
 import cors from "cors";
 import session from "express-session";
-import UserRoutes from "./Kambaz/Users/routes.js";
 
 const app = express();
+
+// Configure CORS before session
 app.use(
   cors({
     credentials: true,
@@ -14,7 +16,7 @@ app.use(
       process.env.NETLIFY_URL,
       "http://localhost:5173",
       "http://localhost:5174",
-      "http://localhost:5175"
+      "http://localhost:5175",
     ],
   })
 );
@@ -32,12 +34,16 @@ if (process.env.NODE_ENV !== "development") {
     domain: process.env.NODE_SERVER_DOMAIN,
   };
 }
+
+// Configure session before express.json
 app.use(session(sessionOptions));
+
+// Configure express.json before all routes
 app.use(express.json());
 
-const port = process.env.PORT || 4000;
+// Define routes
+UserRoutes(app);
+CourseRoutes(app); // Add CourseRoutes
+Lab5(app);
 
-UserRoutes(app)
-Lab5(app)
-Hello(app)
-app.listen(port)
+app.listen(4000); // Use fixed port 4000

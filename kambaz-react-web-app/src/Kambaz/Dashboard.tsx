@@ -11,7 +11,6 @@ import { enrollUser, unenrollUser } from "./Enrollments/reducer";
 export default function Dashboard() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { courses } = useSelector((state: any) => state.coursesReducer);
-  const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const dispatch = useDispatch();
 
   const [course, setCourse] = useState<any>({
@@ -34,32 +33,13 @@ export default function Dashboard() {
     dispatch(updateCourse(course));
   };
 
-  const isEnrolled = (courseId: string) => {
-    return enrollments.some(
-      (enrollment: any) =>
-        enrollment.user === currentUser._id &&
-        enrollment.course === courseId
-    );
-  };
-
   const handleEnrollToggle = (courseId: string) => {
     console.log("handleEnrollToggle called with courseId:", courseId);
     console.log("currentUser._id:", currentUser._id);
-    console.log("isEnrolled before:", isEnrolled(courseId));
-    console.log("enrollments:", enrollments);
     
-    if (isEnrolled(courseId)) {
-      console.log("Dispatching unenrollUser");
-      dispatch(unenrollUser({ userId: currentUser._id, courseId }));
-    } else {
-      console.log("Dispatching enrollUser");
-      dispatch(enrollUser({ userId: currentUser._id, courseId }));
-    }
+    // Assuming the server handles enrollment status, we can directly dispatch actions
+    dispatch(enrollUser({ userId: currentUser._id, courseId }));
   };
-
-  const displayedCourses = showAllCourses
-    ? courses
-    : courses.filter((course: any) => isEnrolled(course._id));
 
   return (
     <div id="wd-dashboard">
@@ -96,52 +76,34 @@ export default function Dashboard() {
       )}
 
       <h2 id="wd-dashboard-published">
-        {showAllCourses ? `All Courses (${courses.length})` : `Published Courses (${displayedCourses.length})`}
+        {showAllCourses ? `All Courses (${courses.length})` : `Published Courses (${courses.length})`}
       </h2> 
       <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
-          {displayedCourses.map((course: any) => (
+          {courses.map((course: any) => (
             <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px" }}>
               <Card>
                 {/* Image and Content - Link only when enrolled */}
-                {isEnrolled(course._id) ? (
-                  <Link to={`/Kambaz/Courses/${course._id}/Home`}
-                    className="text-decoration-none text-dark">
-                    <Card.Img src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
-                    <Card.Body className="card-body">
-                      <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
-                        {course.name} 
-                      </Card.Title>
-                      <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
-                        {course.description} 
-                      </Card.Text>
-                    </Card.Body>
-                  </Link>
-                ) : (
-                  <>
-                    <Card.Img src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
-                    <Card.Body className="card-body">
-                      <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
-                        {course.name} 
-                      </Card.Title>
-                      <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
-                        {course.description} 
-                      </Card.Text>
-                    </Card.Body>
-                  </>
-                )}
+                <Link to={`/Kambaz/Courses/${course._id}/Home`}
+                  className="text-decoration-none text-dark">
+                  <Card.Img src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
+                  <Card.Body className="card-body">
+                    <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                      {course.name} 
+                    </Card.Title>
+                    <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
+                      {course.description} 
+                    </Card.Text>
+                  </Card.Body>
+                </Link>
 
                 {/* Buttons Section - Outside of Link */}
                 <Card.Body className="pt-0">
                   <div className="d-flex justify-content-between">
-                    {isEnrolled(course._id) ? (
-                      <Link to={`/Kambaz/Courses/${course._id}/Home`} className="text-decoration-none">
-                        <Button variant="primary">Go</Button>
-                      </Link>
-                    ) : (
-                      <span></span>
-                    )}
+                    <Link to={`/Kambaz/Courses/${course._id}/Home`} className="text-decoration-none">
+                      <Button variant="primary">Go</Button>
+                    </Link>
 
                     {!showAllCourses && currentUser.role === "FACULTY" && (
                       <>
@@ -162,13 +124,13 @@ export default function Dashboard() {
 
                     {showAllCourses && (
                       <Button 
-                        variant={isEnrolled(course._id) ? "danger" : "success"}
+                        variant="success"
                         onClick={() => {
                           console.log("Button clicked!");
                           handleEnrollToggle(course._id);
                         }}
                       >
-                        {isEnrolled(course._id) ? "Unenroll" : "Enroll"}
+                        Enroll
                       </Button>
                     )}
                   </div>
