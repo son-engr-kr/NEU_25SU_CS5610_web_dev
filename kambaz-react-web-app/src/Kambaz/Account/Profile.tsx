@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FormControl, Button } from "react-bootstrap";
 import { setCurrentUser } from "./reducer";
+import * as client from "./client";
 
 export default function Profile() {
   const [profile, setProfile] = useState<any>({});
@@ -16,6 +17,11 @@ export default function Profile() {
     setProfile(currentUser);
   };
 
+  const updateProfile = async () => {
+    const updatedProfile = await client.updateUser(profile);
+    dispatch(setCurrentUser(updatedProfile));
+  };
+
   // Signout function to clear current user and redirect to Signin
   const signout = () => {
     dispatch(setCurrentUser(null));
@@ -26,7 +32,7 @@ export default function Profile() {
   useEffect(() => { fetchProfile(); }, []);
 
   return (
-    <div className="wd-profile-screen">
+    <div id="wd-profile-screen">
       <h3>Profile</h3>
       {profile && (
         <div>
@@ -49,6 +55,7 @@ export default function Profile() {
             <option value="FACULTY">Faculty</option>
             <option value="STUDENT">Student</option>
           </select>
+          <button onClick={updateProfile} className="btn btn-primary w-100 mb-2"> Update </button>
           <Button onClick={signout} className="w-100 mb-2" id="wd-signout-btn">
             Sign out
           </Button>
