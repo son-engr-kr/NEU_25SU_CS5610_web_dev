@@ -7,7 +7,7 @@ import "./styles.css";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import EnrollmentProtectedRoute from "./Account/EnrollmentProtectedRoute";
 import Session from "./Account/Session";
-// import * as client from "./Courses/client";
+import * as courseClient from "./Courses/client";
 import * as userClient from "./Account/client";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -32,10 +32,15 @@ export default function Kambaz() {
     fetchCourses();
   }, [currentUser]);
 
+  const deleteCourse = async (courseId: string) => {
+    const status = await courseClient.deleteCourse(courseId);
+    setCourses(courses.filter((course) => course._id !== courseId));
+  }
+
 
   const addNewCourse = async () => {
     const newCourse = await userClient.createCourse(course);
-    setCourses([ ...courses, newCourse ]);
+    setCourses([...courses, newCourse]);
   };
 
 
