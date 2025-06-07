@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ListGroup } from "react-bootstrap";
-import { FaTrash } from "react-icons/fa"; // Importing the trash icon
+import { FaTrash, FaPlusCircle } from "react-icons/fa"; // Importing the trash and plus icons
 import * as client from "./client";
 
 export default function WorkingWithArraysAsynchronously() {
@@ -16,6 +16,11 @@ export default function WorkingWithArraysAsynchronously() {
     setTodos(updatedTodos);
   };
 
+  const createTodo = async () => {
+    const todos = await client.createTodo();
+    setTodos(todos);
+  };
+
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -23,7 +28,10 @@ export default function WorkingWithArraysAsynchronously() {
   return (
     <div id="wd-asynchronous-arrays">
       <h3>Working with Arrays Asynchronously</h3>
-      <h4>Todos</h4>
+      <h4>
+        Todos
+        <FaPlusCircle onClick={createTodo} className="text-success float-end fs-3" id="wd-create-todo" />
+      </h4>
       <ListGroup>
         {todos.map((todo) => (
           <ListGroup.Item key={todo.id}>
