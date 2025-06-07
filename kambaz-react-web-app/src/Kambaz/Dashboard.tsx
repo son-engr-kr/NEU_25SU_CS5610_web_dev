@@ -8,22 +8,22 @@ import { useState } from "react";
 import { addCourse, deleteCourse, updateCourse } from "./Courses/reducer";
 import { enrollUser, unenrollUser } from "./Enrollments/reducer";
 
-export default function Dashboard() {
+export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse }: any) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { courses } = useSelector((state: any) => state.coursesReducer);
+  // const { courses } = useSelector((state: any) => state.coursesReducer);
   const dispatch = useDispatch();
 
-  const [course, setCourse] = useState<any>({
-    _id: "1234", name: "New Course", number: "New Number",
-    startDate: "2023-09-10", endDate: "2023-12-15", 
-    description: "New Description",
-  });
+  // const [course, setCourse] = useState<any>({
+  //   _id: "1234", name: "New Course", number: "New Number",
+  //   startDate: "2023-09-10", endDate: "2023-12-15", 
+  //   description: "New Description",
+  // });
   
   const [showAllCourses, setShowAllCourses] = useState(false);
 
-  const addNewCourse = () => {
-    dispatch(addCourse(course));
-  };
+  // const addNewCourse = () => {
+  //   dispatch(addCourse(course));
+  // };
 
   const handleDeleteCourse = (courseId: string) => {
     dispatch(deleteCourse(courseId));
