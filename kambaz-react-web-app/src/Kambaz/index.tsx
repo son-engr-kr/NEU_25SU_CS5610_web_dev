@@ -10,7 +10,8 @@ import Session from "./Account/Session";
 import * as courseClient from "./Courses/client";
 import * as userClient from "./Account/client";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setEnrollments } from "./Enrollments/reducer";
 
 export default function Kambaz() {
   const [courses, setCourses] = useState<any[]>([]);
@@ -18,31 +19,54 @@ export default function Kambaz() {
     _id: "1234", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
   });
+  const [showAllCourses, setShowAllCourses] = useState(false);
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const dispatch = useDispatch();
+  
   const fetchCourses = async () => {
     try {
-      const courses = await userClient.findMyCourses();
-      setCourses(courses);
+      if (showAllCourses) {
+        const allCourses = await courseClient.fetchAllCourses();
+        setCourses(allCourses);
+      } else {
+        const enrolledCourses = await userClient.findMyCourses();
+        setCourses(enrolledCourses);
+      }
     } catch (error) {
       console.error(error);
     }
   };
+
+  const fetchEnrollments = async () => {
+    try {
+      if (currentUser && currentUser._id) {
+        const enrollments = await userClient.findUserEnrollments(currentUser._id);
+        dispatch(setEnrollments(enrollments));
+      }
+    } catch (error) {
+      console.error("Failed to fetch enrollments:", error);
+    }
+  };
+
   useEffect(() => {
     fetchCourses();
+  }, [currentUser, showAllCourses]);
+
+  useEffect(() => {
+    fetchEnrollments();
   }, [currentUser]);
 
   const deleteCourse = async (courseId: string) => {
-    // const status = await courseClient.deleteCourse(courseId);
-    // setCourses(courses.filter((course) => course._id !== courseId));
-  }
+    const status = await courseClient.deleteCourse(courseId);
+    setCourses(courses.filter((course) => course._id !== courseId));
+  };
 
   const addNewCourse = async () => {
     const newCourse = await userClient.createCourse(course);
     setCourses([...courses, newCourse]);
   };
 
-  // Placeholder for updateCourse function
   const updateCourse = async () => {
     await courseClient.updateCourse(course);
     setCourses(courses.map((c) => {
@@ -51,10 +75,9 @@ export default function Kambaz() {
     }));
   };
 
-
-  // useEffect(() => {
-  //   fetchCourses();
-  // }, [currentUser]);
+  const toggleShowAllCourses = () => {
+    setShowAllCourses(!showAllCourses);
+  };
 
   return (
     <Session>
@@ -73,6 +96,8 @@ export default function Kambaz() {
                   addNewCourse={addNewCourse}
                   deleteCourse={deleteCourse}
                   updateCourse={updateCourse}
+                  showAllCourses={showAllCourses}
+                  toggleShowAllCourses={toggleShowAllCourses}
                 />
               </ProtectedRoute>
             } />
