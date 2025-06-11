@@ -9,6 +9,7 @@ import { useParams } from "react-router";
 import { useState, useEffect } from 'react';
 // import { v4 as uuidv4 } from "uuid";
 import * as coursesClient from "../client";
+import * as modulesClient from "./client";
 
 import { addModule, editModule, updateModule, deleteModule, setModules }
   from "./reducer";
@@ -21,6 +22,11 @@ export default function Modules() {
 
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
+
+  const removeModule = async (moduleId: string) => {
+    await modulesClient.deleteModule(moduleId);
+    dispatch(deleteModule(moduleId));
+  };
 
   const createModuleForCourse = async () => {
     if (!cid) return;
@@ -37,6 +43,7 @@ export default function Modules() {
   useEffect(() => {
     fetchModules();
   }, []);
+  
 
 
   // const addModule = () => {
@@ -93,9 +100,7 @@ export default function Modules() {
                 )}
                 <ModuleControlButtons
                   moduleId={module._id}
-                  deleteModule={(moduleId) => {
-                    dispatch(deleteModule(moduleId));
-                  }}
+                  deleteModule={(moduleId) => removeModule(moduleId)}
                   editModule={(moduleId) => dispatch(editModule(moduleId))} />
               </div>
               {module.lessons && (

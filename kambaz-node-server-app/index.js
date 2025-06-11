@@ -6,6 +6,7 @@ import CourseRoutes from "./Kambaz/Courses/routes.js"; // Import CourseRoutes
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
 import cors from "cors";
 import session from "express-session";
+import ModuleRoutes from "./Kambaz/Modules/routes.js";
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use(express.json());
 UserRoutes(app);
 CourseRoutes(app); // Add CourseRoutes
 EnrollmentRoutes(app);
+ModuleRoutes(app);
 Lab5(app);
 
 app.listen(4000); // Use fixed port 4000
