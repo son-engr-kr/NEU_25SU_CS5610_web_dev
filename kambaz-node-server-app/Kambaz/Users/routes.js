@@ -86,5 +86,6 @@ export default function UserRoutes(app) {
   app.post("/api/users/signout", signout);
   app.post("/api/users/profile", profile);
   app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
+  app.get("/api/users/current/courses", findCoursesForEnrolledUser);
   app.post("/api/users/current/courses", createCourse);
 }

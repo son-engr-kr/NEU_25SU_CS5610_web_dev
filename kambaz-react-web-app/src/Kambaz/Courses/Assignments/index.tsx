@@ -6,7 +6,9 @@ import { AiOutlineFileText } from "react-icons/ai";
 import { Button, InputGroup, FormControl, Card } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAssignment } from "./reducer";
+import { useState, useEffect } from "react";
+import { setAssignments, deleteAssignment } from "./reducer";
+import * as assignmentsClient from "./client";
 // DONE(A2): 2.4.7 - Styling the Assignments Screen (On Your Own)
 
 const quizData = [
@@ -56,21 +58,38 @@ export default function Assignments() {
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
-  const courseAssignments = assignments.filter((assignment: Assignment) => assignment.course === cid);
+
+  const fetchAssignments = async () => {
+    try {
+      const assignments = await assignmentsClient.findAssignmentsForCourse(cid as string);
+      dispatch(setAssignments(assignments));
+    } catch (error) {
+      console.error("Failed to fetch assignments:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAssignments();
+  }, [cid]);
 
   console.log("Assignments component rendered");
   console.log("Course ID:", cid);
   console.log("All assignments:", assignments);
-  console.log("Course assignments:", courseAssignments);
   console.log("Current user:", currentUser);
+  console.log("Current user role:", currentUser?.role);
 
-  const handleDeleteAssignment = (assignmentId: string) => {
+  const handleDeleteAssignment = async (assignmentId: string) => {
     console.log("handleDeleteAssignment called with:", assignmentId);
     const result = window.confirm("Are you sure you want to remove this assignment?");
     console.log("User confirmed:", result);
     if (result) {
-      console.log("Dispatching deleteAssignment");
-      dispatch(deleteAssignment(assignmentId));
+      try {
+        await assignmentsClient.deleteAssignment(assignmentId);
+        dispatch(deleteAssignment(assignmentId));
+        console.log("Assignment deleted successfully");
+      } catch (error) {
+        console.error("Failed to delete assignment:", error);
+      }
     }
   };
 
@@ -92,7 +111,7 @@ export default function Assignments() {
           <Button variant="outline-secondary" className="fw-bold d-flex align-items-center">
             <FaPlus className="me-1" /> Group
           </Button>
-          {currentUser.role === "FACULTY" && (
+          {(currentUser?.role === "FACULTY" || currentUser?.role === "TA") && (
             <Link to={`/Kambaz/Courses/${cid}/Assignments/new`}>
               <Button variant="danger" className="fw-bold d-flex align-items-center">
                 <FaPlus className="me-1" /> Assignment
@@ -123,7 +142,7 @@ export default function Assignments() {
 
       {/* Assignment List */}
       <div className="bg-white border-top-0 rounded-0" style={{ borderTop: "none" }}>
-        {courseAssignments.map((assignment: Assignment) => (
+        {assignments.map((assignment: Assignment) => (
           <div
             key={assignment._id}
             className="d-flex align-items-center p-3 border-bottom"
@@ -147,7 +166,7 @@ export default function Assignments() {
             </div>
             
             {/* Control Buttons */}
-            {currentUser.role === "FACULTY" && (
+            {(currentUser?.role === "FACULTY" || currentUser?.role === "TA") && (
               <div className="float-end d-flex align-items-center">
                 <Link to={`/Kambaz/Courses/${cid}/Assignments/${assignment._id}`} className="text-decoration-none">
                   <FaPencil className="text-primary me-3" style={{ cursor: "pointer" }} />

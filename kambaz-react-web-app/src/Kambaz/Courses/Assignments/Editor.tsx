@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import { useState, useEffect } from "react";
+import * as assignmentsClient from "./client";
 
 // DONE(A2): 2.4.8 - Styling Edit Assignment Screen (On Your Own)
 interface Assignment {
@@ -39,16 +40,33 @@ export default function AssignmentEditor() {
   useEffect(() => {
     if (!isNew && existingAssignment) {
       setAssignment(existingAssignment);
+    } else if (!isNew && aid) {
+      // If assignment not in store, fetch it from server
+      const fetchAssignment = async () => {
+        try {
+          const fetchedAssignment = await assignmentsClient.findAssignmentById(aid);
+          setAssignment(fetchedAssignment);
+        } catch (error) {
+          console.error("Failed to fetch assignment:", error);
+        }
+      };
+      fetchAssignment();
     }
-  }, [isNew, existingAssignment]);
+  }, [isNew, existingAssignment, aid]);
 
-  const handleSave = () => {
-    if (isNew) {
-      dispatch(addAssignment(assignment));
-    } else {
-      dispatch(updateAssignment(assignment));
+  const handleSave = async () => {
+    try {
+      if (isNew) {
+        const newAssignment = await assignmentsClient.createAssignment(cid as string, assignment);
+        dispatch(addAssignment(newAssignment));
+      } else {
+        const updatedAssignment = await assignmentsClient.updateAssignment(assignment);
+        dispatch(updateAssignment(updatedAssignment));
+      }
+      navigate(`/Kambaz/Courses/${cid}/Assignments`);
+    } catch (error) {
+      console.error("Failed to save assignment:", error);
     }
-    navigate(`/Kambaz/Courses/${cid}/Assignments`);
   };
 
   const handleCancel = () => {
