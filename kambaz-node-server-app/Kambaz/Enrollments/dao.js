@@ -24,3 +24,8 @@ export function findEnrollmentsByUserId(userId) {
   const { enrollments } = Database;
   return enrollments.filter((enrollment) => enrollment.user === userId);
 }
+
+export function findAllEnrollments() {
+  const { enrollments } = Database;
+  return enrollments;
+}

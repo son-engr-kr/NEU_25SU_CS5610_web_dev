@@ -3,10 +3,45 @@ import * as courseDao from "../Courses/dao.js";
 import * as enrollmentsDao from "../Enrollments/dao.js";
 
 export default function UserRoutes(app) {
-  const createUser = (req, res) => { };
-  const deleteUser = (req, res) => { };
-  const findAllUsers = (req, res) => { };
-  const findUserById = (req, res) => { };
+  const createUser = (req, res) => {
+    const newUser = dao.createUser(req.body);
+    res.json(newUser);
+  };
+
+  const deleteUser = (req, res) => {
+    const { userId } = req.params;
+    dao.deleteUser(userId);
+    res.json({ message: "User deleted successfully" });
+  };
+
+  const findAllUsers = (req, res) => {
+    const users = dao.findAllUsers();
+    res.json(users);
+  };
+
+  const findUserById = (req, res) => {
+    const { userId } = req.params;
+    const user = dao.findUserById(userId);
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  };
+
+  // Find users enrolled in a specific course
+  const findUsersForCourse = (req, res) => {
+    const { courseId } = req.params;
+    const enrollments = enrollmentsDao.findAllEnrollments();
+    const users = dao.findAllUsers();
+    
+    const enrolledUsers = users.filter(user =>
+      enrollments.some(enrollment =>
+        enrollment.user === user._id && enrollment.course === courseId
+      )
+    );
+    res.json(enrolledUsers);
+  };
 
   const updateUser = (req, res) => {
     const userId = req.params.userId;
@@ -81,6 +116,7 @@ export default function UserRoutes(app) {
   app.get("/api/users/:userId", findUserById);
   app.put("/api/users/:userId", updateUser);
   app.delete("/api/users/:userId", deleteUser);
+  app.get("/api/courses/:courseId/users", findUsersForCourse);
   app.post("/api/users/signup", signup);
   app.post("/api/users/signin", signin);
   app.post("/api/users/signout", signout);
