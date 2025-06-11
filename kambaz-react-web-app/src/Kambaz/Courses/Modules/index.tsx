@@ -6,10 +6,11 @@ import ModuleControlButtons from './ModuleControlButtons';
 
 import { useParams } from "react-router";
 // import * as db from "../../Database";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { v4 as uuidv4 } from "uuid";
+import * as coursesClient from "../client";
 
-import { addModule, editModule, updateModule, deleteModule }
+import { addModule, editModule, updateModule, deleteModule, setModules }
   from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -20,6 +21,15 @@ export default function Modules() {
 
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
+
+  const fetchModules = async () => {
+    const modules = await coursesClient.findModulesForCourse(cid as string);
+    dispatch(setModules(modules));
+  };
+  useEffect(() => {
+    fetchModules();
+  }, []);
+
 
   // const addModule = () => {
   //   setModules([...modules, { _id: uuidv4(), name: moduleName, course: cid, lessons: [] }]);
@@ -51,7 +61,7 @@ export default function Modules() {
 
       <ListGroup id="wd-modules" className="rounded-0">
         {modules
-          .filter((module: any) => module.course === cid)
+          // .filter((module: any) => module.course === cid)
           .map((module: any) => (
             <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
               <div className="wd-title p-3 ps-2 bg-secondary">

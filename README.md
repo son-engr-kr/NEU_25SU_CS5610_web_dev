@@ -54,3 +54,9 @@ npm create vite@latest
     npm install
     npm run dev
     ```
+
+- run server
+
+    ```
+    nodemon  index.js
+    ```
