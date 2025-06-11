@@ -6,7 +6,7 @@ import { AiOutlineFileText } from "react-icons/ai";
 import { Button, InputGroup, FormControl, Card } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { setAssignments, deleteAssignment } from "./reducer";
 import * as assignmentsClient from "./client";
 // DONE(A2): 2.4.7 - Styling the Assignments Screen (On Your Own)
