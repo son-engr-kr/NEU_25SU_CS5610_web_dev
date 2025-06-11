@@ -22,7 +22,7 @@ nodemon  index.js
 ## 5.2.3.4 On Your Own
 
 # onrender.com
-
+- URL is different with project name
 check:
 - https://[your-url].onrender.com/api/courses
 - https://[your-url].onrender.com/api/courses/RS101/modules
