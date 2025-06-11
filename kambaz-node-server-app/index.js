@@ -11,12 +11,16 @@ import ModuleRoutes from "./Kambaz/Modules/routes.js";
 
 const app = express();
 
+// Debug: Check what NETLIFY_URL is set to
+console.log("NETLIFY_URL environment variable:", process.env.NETLIFY_URL);
+
 // Configure CORS before session
 app.use(
   cors({
     credentials: true,
     origin: [
       process.env.NETLIFY_URL,
+      "https://cs5610-hyoungseo.netlify.app",
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",

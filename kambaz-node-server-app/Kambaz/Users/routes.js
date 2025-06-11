@@ -83,6 +83,11 @@ export default function UserRoutes(app) {
 
   const profile = async (req, res) => {
     const currentUser = req.session["currentUser"];
+    // Debug: Log session information
+    console.log("Profile request - Session ID:", req.sessionID);
+    console.log("Profile request - Current user:", currentUser);
+    console.log("Profile request - Session data:", req.session);
+    
     if (!currentUser) {
       res.sendStatus(401);
       return;
@@ -121,6 +126,7 @@ export default function UserRoutes(app) {
   app.post("/api/users/signin", signin);
   app.post("/api/users/signout", signout);
   app.post("/api/users/profile", profile);
+  app.get("/api/users/profile", profile);
   app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
   app.get("/api/users/current/courses", findCoursesForEnrolledUser);
   app.post("/api/users/current/courses", createCourse);

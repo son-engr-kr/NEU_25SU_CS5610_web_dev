@@ -21,3 +21,8 @@ nodemon  index.js
 
 ## 5.2.3.4 On Your Own
 
+# onrender.com
+
+check:
+- https://[your-url].onrender.com/api/courses
+- https://[your-url].onrender.com/api/courses/RS101/modules
