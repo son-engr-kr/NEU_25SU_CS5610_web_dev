@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FormControl, Button } from "react-bootstrap";
+import { FormControl } from "react-bootstrap";
 import { setCurrentUser } from "./reducer";
 import * as client from "./client";
 
