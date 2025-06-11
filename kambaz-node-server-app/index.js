@@ -33,14 +33,30 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: false,
 };
+
+// Debug: Check environment and session configuration
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("NODE_SERVER_DOMAIN:", process.env.NODE_SERVER_DOMAIN);
+
 if (process.env.NODE_ENV !== "development") {
   sessionOptions.proxy = true;
   sessionOptions.cookie = {
     sameSite: "none",
     secure: true,
-    domain: process.env.NODE_SERVER_DOMAIN,
+    httpOnly: true,
+    // Don't set domain if NODE_SERVER_DOMAIN is not set
+    ...(process.env.NODE_SERVER_DOMAIN && { domain: process.env.NODE_SERVER_DOMAIN }),
+  };
+} else {
+  // Development configuration
+  sessionOptions.cookie = {
+    sameSite: "lax",
+    secure: false,
+    httpOnly: true,
   };
 }
+
+console.log("Session options:", sessionOptions);
 
 // Configure session before express.json
 app.use(session(sessionOptions));
