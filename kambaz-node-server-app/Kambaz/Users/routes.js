@@ -32,14 +32,17 @@ export default function UserRoutes(app) {
     res.json(users);
   };
 
-  const findUserById = (req, res) => {
-    const { userId } = req.params;
-    const user = dao.findUserById(userId);
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ message: "User not found" });
-    }
+  const findUserById = async (req, res) => {
+    const user = await dao.findUserById(req.params.userId);
+    res.json(user);
+
+    // const { userId } = req.params;
+    // const user = dao.findUserById(userId);
+    // if (user) {
+    //   res.json(user);
+    // } else {
+    //   res.status(404).json({ message: "User not found" });
+    // }
   };
 
   // Find users enrolled in a specific course
