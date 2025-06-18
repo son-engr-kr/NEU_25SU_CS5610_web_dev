@@ -8,7 +8,10 @@ import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import cors from "cors";
 import session from "express-session";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
+import mongoose from "mongoose";
 
+const CONNECTION_STRING = "mongodb://127.0.0.1:27017/kambaz"
+mongoose.connect(CONNECTION_STRING);
 const app = express();
 
 // Debug: Check what NETLIFY_URL is set to
