@@ -6,6 +6,17 @@ const axiosWithCredentials = axios.create({ withCredentials: true });
 export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
+export const findUsersByRole = async (role: string) => {
+    const response = await
+        axios.get(`${USERS_API}?role=${role}`);
+    return response.data;
+};
+
+export const findUsersByPartialName = async (name: string) => {
+    const response = await axios.get(`${USERS_API}?name=${name}`);
+    return response.data;
+};
+
 export const findAllUsers = async () => {
     const response = await axiosWithCredentials.get(USERS_API);
     return response.data;
