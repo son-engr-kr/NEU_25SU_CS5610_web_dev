@@ -1,6 +1,8 @@
 # bash
 ## server
 ```bash
+npm  install  nodemon  -g
+
 npm  install  cors
 npm install express-session
 npm  install  dotenv
