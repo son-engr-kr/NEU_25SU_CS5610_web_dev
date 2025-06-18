@@ -8,10 +8,9 @@ export default function UserRoutes(app) {
     res.json(newUser);
   };
 
-  const deleteUser = (req, res) => {
-    const { userId } = req.params;
-    dao.deleteUser(userId);
-    res.json({ message: "User deleted successfully" });
+  const deleteUser = async (req, res) => {
+    const status = await dao.deleteUser(req.params.userId);
+    res.json(status);
   };
 
   const findAllUsers = async (req, res) => {
@@ -50,7 +49,7 @@ export default function UserRoutes(app) {
     const { courseId } = req.params;
     const enrollments = enrollmentsDao.findAllEnrollments();
     const users = dao.findAllUsers();
-    
+
     const enrolledUsers = users.filter(user =>
       enrollments.some(enrollment =>
         enrollment.user === user._id && enrollment.course === courseId
@@ -101,7 +100,7 @@ export default function UserRoutes(app) {
     console.log("Profile request - Session ID:", req.sessionID);
     console.log("Profile request - Current user:", currentUser);
     console.log("Profile request - Session data:", req.session);
-    
+
     if (!currentUser) {
       res.sendStatus(401);
       return;
