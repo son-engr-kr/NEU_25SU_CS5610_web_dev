@@ -14,8 +14,8 @@ export default function UserRoutes(app) {
     res.json({ message: "User deleted successfully" });
   };
 
-  const findAllUsers = (req, res) => {
-    const users = dao.findAllUsers();
+  const findAllUsers = async (req, res) => {
+    const users = await dao.findAllUsers();
     res.json(users);
   };
 
