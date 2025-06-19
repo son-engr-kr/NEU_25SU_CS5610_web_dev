@@ -34,6 +34,7 @@ export const updateCourse = async (course: any) => {
 };
 
 export const createCourse = async (course: any) => {
-  const { data } = await axios.post(COURSES_API, course);
+  const { data } = await axiosWithCredentials.post(COURSES_API, course);
   return data;
-};
+ };
+ 
