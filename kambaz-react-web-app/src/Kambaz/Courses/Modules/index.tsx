@@ -23,6 +23,16 @@ export default function Modules() {
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
 
+  const addModuleHandler = async () => {
+    const newModule = await courseClient.createModuleForCourse(cid!, {
+      name: moduleName,
+      course: cid,
+    });
+    dispatch(addModule(newModule));
+    setModuleName("");
+  };
+ 
+
   const fetchModulesForCourse = async () => {
     const modules = await courseClient.findModulesForCourse(cid!);
     dispatch(setModules(modules));
@@ -89,7 +99,7 @@ export default function Modules() {
         }} 
         
       /> */}
-      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={createModuleForCourse} />
+      <ModulesControls addModule={addModuleHandler} setModuleName={setModuleName} moduleName={moduleName}/>
 
       <ListGroup id="wd-modules" className="rounded-0">
         {modules
