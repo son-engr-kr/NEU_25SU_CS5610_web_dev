@@ -20,7 +20,7 @@ export default function Kambaz() {
     _id: "1234", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
   });
-  const [showAllCourses, setShowAllCourses] = useState(false);
+  // const [showAllCourses, setShowAllCourses] = useState(false);
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
@@ -95,7 +95,7 @@ export default function Kambaz() {
 
   const deleteCourse = async (courseId: string) => {
     // const status = await courseClient.deleteCourse(courseId);
-    const status = await courseClient.deleteCourse(courseId);
+    // const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
 

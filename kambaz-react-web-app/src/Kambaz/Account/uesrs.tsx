@@ -9,7 +9,7 @@ export default function Users() {
     const { uid } = useParams();
 
     const [role, setRole] = useState("");
-    const [name, setName] = useState("");
+    const [_, setName] = useState("");
     const filterUsersByName = async (name: string) => {
         setName(name);
         if (name) {

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button, FormControl } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 // import { useState } from "react";
-import { enrollUser, unenrollUser } from "./Enrollments/reducer";
-import * as userClient from "./Account/client";
+// import { enrollUser, unenrollUser } from "./Enrollments/reducer";
+// import * as userClient from "./Account/client";
 
 export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse, enrolling, setEnrolling, updateEnrollment }
   : {
@@ -15,8 +15,8 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
     setEnrolling: (enrolling: boolean) => void; updateEnrollment: (courseId: string, enrolled: boolean) => void
   }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
-  const dispatch = useDispatch();
+  // const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
+  // const dispatch = useDispatch();
 
   const handleDeleteCourse = (courseId: string) => {
     deleteCourse(courseId);
@@ -26,11 +26,11 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
     updateCourse();
   };
 
-  const isEnrolled = (courseId: string) => {
-    return enrollments.some(
-      (enrollment: any) => enrollment.user === currentUser._id && enrollment.course === courseId
-    );
-  };
+  // const isEnrolled = (courseId: string) => {
+  //   return enrollments.some(
+  //     (enrollment: any) => enrollment.user === currentUser._id && enrollment.course === courseId
+  //   );
+  // };
 
   // const handleEnrollToggle = async (courseId: string) => {
   //   console.log("handleEnrollToggle called with courseId:", courseId);
