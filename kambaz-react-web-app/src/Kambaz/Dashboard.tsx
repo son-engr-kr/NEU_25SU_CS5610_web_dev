@@ -8,7 +8,12 @@ import { Row } from "react-bootstrap";
 import { enrollUser, unenrollUser } from "./Enrollments/reducer";
 import * as userClient from "./Account/client";
 
-export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse, enrolling, setEnrolling }: any) {
+export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse, enrolling, setEnrolling, updateEnrollment }
+  : {
+    courses: any[]; course: any; setCourse: (course: any) => void; addNewCourse: () => void;
+    deleteCourse: (courseId: string) => void; updateCourse: () => void; enrolling: boolean;
+    setEnrolling: (enrolling: boolean) => void; updateEnrollment: (courseId: string, enrolled: boolean) => void
+  }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const dispatch = useDispatch();
@@ -27,28 +32,28 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
     );
   };
 
-  const handleEnrollToggle = async (courseId: string) => {
-    console.log("handleEnrollToggle called with courseId:", courseId);
-    console.log("currentUser._id:", currentUser._id);
+  // const handleEnrollToggle = async (courseId: string) => {
+  //   console.log("handleEnrollToggle called with courseId:", courseId);
+  //   console.log("currentUser._id:", currentUser._id);
 
-    const enrolled = isEnrolled(courseId);
+  //   const enrolled = isEnrolled(courseId);
 
-    try {
-      if (enrolled) {
-        // Unenroll the user
-        await userClient.unenrollFromCourse(currentUser._id, courseId);
-        dispatch(unenrollUser({ userId: currentUser._id, courseId }));
-        console.log("Successfully unenrolled from course:", courseId);
-      } else {
-        // Enroll the user
-        await userClient.enrollInCourse(currentUser._id, courseId);
-        dispatch(enrollUser({ userId: currentUser._id, courseId }));
-        console.log("Successfully enrolled in course:", courseId);
-      }
-    } catch (error) {
-      console.error("Failed to toggle enrollment:", error);
-    }
-  };
+  //   try {
+  //     if (enrolled) {
+  //       // Unenroll the user
+  //       await userClient.unenrollFromCourse(currentUser._id, courseId);
+  //       dispatch(unenrollUser({ userId: currentUser._id, courseId }));
+  //       console.log("Successfully unenrolled from course:", courseId);
+  //     } else {
+  //       // Enroll the user
+  //       await userClient.enrollInCourse(currentUser._id, courseId);
+  //       dispatch(enrollUser({ userId: currentUser._id, courseId }));
+  //       console.log("Successfully enrolled in course:", courseId);
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to toggle enrollment:", error);
+  //   }
+  // };
 
   return (
     <div id="wd-dashboard">
@@ -104,7 +109,10 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
                   <Card.Body className="card-body">
                     <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
                       {enrolling && (
-                        <button className={`btn ${ course.enrolled ? "btn-danger" : "btn-success" } float-end`} >
+                        <button onClick={(event) => {
+                          event.preventDefault();
+                          updateEnrollment(course._id, !course.enrolled);
+                        }} className={`btn ${course.enrolled ? "btn-danger" : "btn-success"} float-end`} >
                           {course.enrolled ? "Unenroll" : "Enroll"}
                         </button>
                       )}
