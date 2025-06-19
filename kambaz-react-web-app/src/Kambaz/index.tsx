@@ -12,6 +12,7 @@ import * as userClient from "./Account/client";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setEnrollments } from "./Enrollments/reducer";
+import { enrollUser, unenrollUser } from "./Enrollments/reducer";
 
 export default function Kambaz() {
   const [courses, setCourses] = useState<any[]>([]);
@@ -36,17 +37,15 @@ export default function Kambaz() {
   const updateEnrollment = async (courseId: string, enrolled: boolean) => {
     if (enrolled) {
       await userClient.enrollIntoCourse(currentUser._id, courseId);
+      dispatch(enrollUser({ userId: currentUser._id, courseId }));
     } else {
       await userClient.unenrollFromCourse(currentUser._id, courseId);
+      dispatch(unenrollUser({ userId: currentUser._id, courseId }));
     }
     setCourses(
-      courses.map((course) => {
-        if (course._id === courseId) {
-          return { ...course, enrolled: enrolled };
-        } else {
-          return course;
-        }
-      })
+      courses.map((course) =>
+        course._id === courseId ? { ...course, enrolled } : course
+      )
     );
   };
  

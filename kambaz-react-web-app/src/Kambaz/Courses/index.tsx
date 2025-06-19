@@ -8,13 +8,13 @@ import Home from "./Home";
 import { FaAlignJustify } from "react-icons/fa6";
 import { Button, Offcanvas, ListGroup } from "react-bootstrap";
 import { useState } from "react";
-import PeopleTable from "./People/Table";
 import { AiOutlineDashboard, AiOutlineCalendar, AiOutlineInbox } from "react-icons/ai";
 import { LiaBookSolid } from "react-icons/lia";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaFlask } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import People from "./People";
 
 export default function Courses() {
   const { cid } = useParams();
@@ -59,7 +59,7 @@ export default function Courses() {
             <Route path="Modules" element={<Modules />} />
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
-            <Route path="People" element={<PeopleTable />} />
+            <Route path="People" element={<People />} />
           </Routes>
         </div>
       </div>

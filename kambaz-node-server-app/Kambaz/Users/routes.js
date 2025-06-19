@@ -85,17 +85,14 @@ export default function UserRoutes(app) {
   };
 
   // Find users enrolled in a specific course
-  const findUsersForCourse = (req, res) => {
+  const findUsersForCourse = async (req, res) => {
     const { courseId } = req.params;
-    const enrollments = enrollmentsDao.findAllEnrollments();
-    const users = dao.findAllUsers();
-
-    const enrolledUsers = users.filter(user =>
-      enrollments.some(enrollment =>
-        enrollment.user === user._id && enrollment.course === courseId
-      )
-    );
-    res.json(enrolledUsers);
+    try {
+      const users = await enrollmentsDao.findUsersForCourse(courseId);
+      res.json(users);
+    } catch (e) {
+      res.status(500).send(e);
+    }
   };
 
   const updateUser = async (req, res) => {
