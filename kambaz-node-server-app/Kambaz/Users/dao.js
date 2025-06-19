@@ -1,5 +1,8 @@
 import model from "./model.js";
-export const createUser = (user) => {} // implemented later
+export const createUser = (user) => {
+  const newUser = { ...user, _id: uuidv4() };
+  return model.create(newUser);
+} // implemented later
 export const findAllUsers = () => model.find();
 export const findUserById = (userId) => model.findById(userId);
 export const findUserByUsername = (username) =>  model.findOne({ username: username });
