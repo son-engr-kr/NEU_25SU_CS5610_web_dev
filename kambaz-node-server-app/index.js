@@ -11,7 +11,12 @@ import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import mongoose from "mongoose";
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz"
-mongoose.connect(CONNECTION_STRING);
+mongoose.connect(CONNECTION_STRING)
+     .then(() => console.log('MongoDB connected'))
+     .catch(err => {
+       console.error('Mongo connection error →', err);
+       process.exit(1);
+     });
 const app = express();
 
 // Debug: Check what NETLIFY_URL is set to
