@@ -8,11 +8,11 @@ import { Row } from "react-bootstrap";
 import { enrollUser, unenrollUser } from "./Enrollments/reducer";
 import * as userClient from "./Account/client";
 
-export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse, showAllCourses, toggleShowAllCourses }: any) {
+export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse, enrolling, setEnrolling }: any) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const dispatch = useDispatch();
-  
+
   const handleDeleteCourse = (courseId: string) => {
     deleteCourse(courseId);
   };
@@ -30,9 +30,9 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
   const handleEnrollToggle = async (courseId: string) => {
     console.log("handleEnrollToggle called with courseId:", courseId);
     console.log("currentUser._id:", currentUser._id);
-    
+
     const enrolled = isEnrolled(courseId);
-    
+
     try {
       if (enrolled) {
         // Unenroll the user
@@ -52,19 +52,23 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
 
   return (
     <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1> 
-      <div className="d-flex justify-content-between align-items-center">
+      <h1 id="wd-dashboard-title">Dashboard
+        <button onClick={() => setEnrolling(!enrolling)} className="float-end btn btn-primary" >
+          {enrolling ? "My Courses" : "All Courses"}
+        </button>
+      </h1>
+      {/* <div className="d-flex justify-content-between align-items-center">
         <span></span>
-        <Button 
-          variant={showAllCourses ? "success" : "primary"} 
+        <Button
+          variant={showAllCourses ? "success" : "primary"}
           onClick={toggleShowAllCourses}
           className="mb-3"
         >
           {showAllCourses ? "Show Enrolled Courses" : "Enrollments"}
         </Button>
-      </div>
+      </div> */}
       <hr />
-      
+
       {currentUser.role === "FACULTY" && (
         <>
           <h5>New Course
@@ -85,8 +89,8 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
       )}
 
       <h2 id="wd-dashboard-published">
-        {showAllCourses ? `All Courses (${courses.length})` : `Published Courses (${courses.length})`}
-      </h2> 
+        {enrolling ? `All Courses (${courses.length})` : `Published Courses (${courses.length})`}
+      </h2>
       <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
@@ -99,10 +103,15 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
                   <Card.Img src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
                   <Card.Body className="card-body">
                     <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
-                      {course.name} 
+                      {enrolling && (
+                        <button className={`btn ${ course.enrolled ? "btn-danger" : "btn-success" } float-end`} >
+                          {course.enrolled ? "Unenroll" : "Enroll"}
+                        </button>
+                      )}
+                      {course.name}
                     </Card.Title>
                     <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
-                      {course.description} 
+                      {course.description}
                     </Card.Text>
                   </Card.Body>
                 </Link>
@@ -114,7 +123,7 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
                       <Button variant="primary">Go</Button>
                     </Link>
 
-                    {!showAllCourses && currentUser.role === "FACULTY" && (
+                    {!enrolling && currentUser.role === "FACULTY" && (
                       <>
                         <button
                           onClick={() => setCourse(course)}
@@ -122,25 +131,13 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
                         >
                           Edit
                         </button>
-                        <button 
+                        <button
                           onClick={() => handleDeleteCourse(course._id)}
                           className="btn btn-danger"
                         >
                           Delete
                         </button>
                       </>
-                    )}
-
-                    {showAllCourses && (
-                      <Button 
-                        variant={isEnrolled(course._id) ? "danger" : "success"}
-                        onClick={() => {
-                          console.log("Button clicked!");
-                          handleEnrollToggle(course._id);
-                        }}
-                      >
-                        {isEnrolled(course._id) ? "Unenroll" : "Enroll"}
-                      </Button>
                     )}
                   </div>
                 </Card.Body>

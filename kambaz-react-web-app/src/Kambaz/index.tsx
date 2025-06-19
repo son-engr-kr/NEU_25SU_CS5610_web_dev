@@ -23,21 +23,36 @@ export default function Kambaz() {
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
-  
-  const fetchCourses = async () => {
+
+  const [enrolling, setEnrolling] = useState<boolean>(false);
+  const findCoursesForUser = async () => {
     try {
-      if (showAllCourses) {
-        const allCourses = await courseClient.fetchAllCourses();
-        setCourses(allCourses);
-      } else {
-        const enrolledCourses = await userClient.findMyCourses();
-        setCourses(enrolledCourses);
-      }
+      const courses = await userClient.findCoursesForUser(currentUser._id);
+      setCourses(courses);
     } catch (error) {
       console.error(error);
     }
   };
-
+  const fetchCourses = async () => {
+    try {
+      const allCourses = await courseClient.fetchAllCourses();
+      const enrolledCourses = await userClient.findCoursesForUser(
+        currentUser._id
+      );
+      const courses = allCourses.map((course: any) => {
+        if (enrolledCourses.find((c: any) => c._id === course._id)) {
+          return { ...course, enrolled: true };
+        } else {
+          return course;
+        }
+      });
+      setCourses(courses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+ 
+  
   const fetchEnrollments = async () => {
     try {
       if (currentUser && currentUser._id) {
@@ -50,8 +65,13 @@ export default function Kambaz() {
   };
 
   useEffect(() => {
-    fetchCourses();
-  }, [currentUser, showAllCourses]);
+    if (enrolling) {
+      fetchCourses();
+    } else {
+      findCoursesForUser();
+    }
+ 
+  }, [currentUser, enrolling]);
 
   useEffect(() => {
     fetchEnrollments();
@@ -77,9 +97,9 @@ export default function Kambaz() {
     }));
   };
 
-  const toggleShowAllCourses = () => {
-    setShowAllCourses(!showAllCourses);
-  };
+  // const toggleShowAllCourses = () => {
+  //   setShowAllCourses(!showAllCourses);
+  // };
 
   return (
     <Session>
@@ -91,16 +111,9 @@ export default function Kambaz() {
             <Route path="/Account/*" element={<Account />} />
             <Route path="Dashboard" element={
               <ProtectedRoute>
-                <Dashboard
-                  courses={courses}
-                  course={course}
-                  setCourse={setCourse}
-                  addNewCourse={addNewCourse}
-                  deleteCourse={deleteCourse}
-                  updateCourse={updateCourse}
-                  showAllCourses={showAllCourses}
-                  toggleShowAllCourses={toggleShowAllCourses}
-                />
+                 <Dashboard courses={courses} course={course} setCourse={setCourse}
+              addNewCourse={addNewCourse} deleteCourse={deleteCourse} updateCourse={updateCourse}
+              enrolling={enrolling} setEnrolling={setEnrolling}/>
               </ProtectedRoute>
             } />
             <Route path="Courses/:cid/*" element={
