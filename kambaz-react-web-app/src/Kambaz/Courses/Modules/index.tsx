@@ -23,6 +23,12 @@ export default function Modules() {
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
 
+  const deleteModuleHandler = async (moduleId: string) => {
+    await modulesClient.deleteModule(moduleId);
+    dispatch(deleteModule(moduleId));
+  };
+ 
+
   const addModuleHandler = async () => {
     const newModule = await courseClient.createModuleForCourse(cid!, {
       name: moduleName,
@@ -48,17 +54,17 @@ export default function Modules() {
   };
 
 
-  const removeModule = async (moduleId: string) => {
-    await modulesClient.deleteModule(moduleId);
-    dispatch(deleteModule(moduleId));
-  };
+  // const removeModule = async (moduleId: string) => {
+  //   await modulesClient.deleteModule(moduleId);
+  //   dispatch(deleteModule(moduleId));
+  // };
 
-  const createModuleForCourse = async () => {
-    if (!cid) return;
-    const newModule = { name: moduleName, course: cid };
-    const module = await coursesClient.createModuleForCourse(cid, newModule);
-    dispatch(addModule(module));
-  };
+  // const createModuleForCourse = async () => {
+  //   if (!cid) return;
+  //   const newModule = { name: moduleName, course: cid };
+  //   const module = await coursesClient.createModuleForCourse(cid, newModule);
+  //   dispatch(addModule(module));
+  // };
 
 
   const fetchModules = async () => {
@@ -125,7 +131,7 @@ export default function Modules() {
                 )}
                 <ModuleControlButtons
                   moduleId={module._id}
-                  deleteModule={(moduleId) => removeModule(moduleId)}
+                  deleteModule={(moduleId) => deleteModuleHandler(moduleId)}
                   editModule={(moduleId) => dispatch(editModule(moduleId))} />
               </div>
               {module.lessons && (

@@ -13,8 +13,9 @@ export function updateModule(moduleId, moduleUpdates) {
   
 
 export function deleteModule(moduleId) {
-    const { modules } = Database;
-    Database.modules = modules.filter((module) => module._id !== moduleId);
+    return model.deleteOne({ _id: moduleId });
+    // const { modules } = Database;
+    // Database.modules = modules.filter((module) => module._id !== moduleId);
 }
 
 export function createModule(module) {
