@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 // import { v4 as uuidv4 } from "uuid";
 import * as coursesClient from "../client";
 import * as modulesClient from "./client";
-
+import * as courseClient from "../client";
 import { addModule, editModule, updateModule, deleteModule, setModules }
   from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,6 +22,15 @@ export default function Modules() {
 
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
+
+  const fetchModulesForCourse = async () => {
+    const modules = await courseClient.findModulesForCourse(cid!);
+    dispatch(setModules(modules));
+  };
+  useEffect(() => {
+    fetchModulesForCourse();
+  }, [cid]);
+ 
 
   const saveModule = async (module: any) => {
     await modulesClient.updateModule(module);
