@@ -23,6 +23,12 @@ export default function Modules() {
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
 
+  const updateModuleHandler = async (module: any) => {
+    await modulesClient.updateModule(module);
+    dispatch(updateModule(module));
+  };
+ 
+
   const deleteModuleHandler = async (moduleId: string) => {
     await modulesClient.deleteModule(moduleId);
     dispatch(deleteModule(moduleId));
@@ -116,18 +122,14 @@ export default function Modules() {
                 <BsGripVertical className="me-2 fs-3" />
                 {!module.editing && module.name}
                 {module.editing && (
-                  <FormControl className="w-50 d-inline-block"
-                    onChange={(e) =>
-                      dispatch(
-                        updateModule({ ...module, name: e.target.value })
-                      )
+                  <input onChange={(e) =>
+                    updateModuleHandler({ ...module, name: e.target.value }) }
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      updateModuleHandler({ ...module, editing: false });
                     }
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        saveModule({ ...module, editing: false });
-                      }
-                    }}
-                    defaultValue={module.name} />
+                  }}
+                  value={module.name}/>
                 )}
                 <ModuleControlButtons
                   moduleId={module._id}
