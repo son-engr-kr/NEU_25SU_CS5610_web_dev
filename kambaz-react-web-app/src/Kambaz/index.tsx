@@ -28,6 +28,7 @@ export default function Kambaz() {
   const [enrolling, setEnrolling] = useState<boolean>(false);
   const findCoursesForUser = async () => {
     try {
+      if (!currentUser || !currentUser._id) return;
       const courses = await userClient.findCoursesForUser(currentUser._id);
       setCourses(courses);
     } catch (error) {
@@ -35,6 +36,7 @@ export default function Kambaz() {
     }
   };
   const updateEnrollment = async (courseId: string, enrolled: boolean) => {
+    if (!currentUser) return;
     if (enrolled) {
       await userClient.enrollIntoCourse(currentUser._id, courseId);
       dispatch(enrollUser({ userId: currentUser._id, courseId }));
@@ -51,6 +53,7 @@ export default function Kambaz() {
  
   const fetchCourses = async () => {
     try {
+      if (!currentUser || !currentUser._id) return;
       const allCourses = await courseClient.fetchAllCourses();
       const enrolledCourses = await userClient.findCoursesForUser(
         currentUser._id
